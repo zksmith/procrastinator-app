@@ -1,9 +1,11 @@
 import React from 'react';
+import { Header } from '../';
 import './Main.css';
 
-function Main() {
+const Main = () => {
   return (
-    <main className='main-section' style={{ padding: '20px' }}>
+    <main className='main-section'>
+      <Header />
       <h1>{'All Posts'}</h1>
       {[1, 2, 3, 4, 5, 6, 7].map((item) => (
         <ul className='posts'>
@@ -22,6 +24,6 @@ function Main() {
       ))}
     </main>
   );
-}
+};
 
 export default Main;
