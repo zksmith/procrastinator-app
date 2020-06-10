@@ -1,7 +1,7 @@
 .sidebar {
-  width: 240px;
+  width: 330px;
   height: 100vh;
-  padding-left: 1%;
+  padding: 0 1%;
   background-color: #edeef0;
 }
 .sidebar ul {
@@ -11,12 +11,8 @@
   list-style: none;
 }
 .sidebar ul a {
-  text-decoration: none;
   color: #555a5a;
   line-height: 30px;
-}
-.sidebar ul a:hover {
-  text-decoration: underline;
 }
 .sidebar ul a.selected {
   color: #18191a;
