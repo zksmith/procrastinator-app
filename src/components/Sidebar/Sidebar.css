@@ -1,0 +1,29 @@
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  padding-left: 1%;
+  background-color: #edeef0;
+}
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+  margin-left: 48px;
+  list-style: none;
+}
+.sidebar ul a {
+  text-decoration: none;
+  color: #555a5a;
+  line-height: 30px;
+}
+.sidebar ul a:hover {
+  text-decoration: underline;
+}
+.sidebar ul a.selected {
+  color: #18191a;
+  font-weight: bold;
+}
+.sidebar ul li.divider {
+  margin: 20px 0;
+  height: 1px;
+  background: linear-gradient(to right, #dcdcdc, rgba(206, 41, 41, 0));
+}
