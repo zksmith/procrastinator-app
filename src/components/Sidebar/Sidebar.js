@@ -6,9 +6,9 @@ const Sidebar = ({ globalSelected, setGlobalSelected }) => {
     'All Posts',
     'Reddit',
     'Hacker News',
-    'Slashdot',
     'Github Trending',
     'Medium',
+    'Lifehacker',
   ];
 
   return (

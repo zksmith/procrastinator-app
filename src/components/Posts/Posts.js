@@ -1,5 +1,8 @@
 import React from 'react';
+
+import './PostInfo';
 import './Posts.css';
+import PostInfo from './PostInfo';
 
 const Posts = ({ selected, data, bookmarks }) => {
   if (data.length) {
@@ -8,23 +11,7 @@ const Posts = ({ selected, data, bookmarks }) => {
         <h1>{selected}</h1>
         <ul className='posts'>
           {data.map((item, index) => (
-            <a href={item.url} key={index}>
-              <li>
-                <p className='post-title'>{item.title}</p>
-                {bookmarks ? (
-                  <div className='post-info'>
-                    <span>Bookmarked Jan 1</span>
-                  </div>
-                ) : (
-                  <div className='post-info'>
-                    <span>{item.source}</span>
-                    <span>{item.upvotes} pts</span>
-                    <span>by {item.author}</span>
-                    <span>{item.comments} comments</span>
-                  </div>
-                )}
-              </li>
-            </a>
+            <PostInfo item={item} index={index} key={index} />
           ))}
         </ul>
       </>
