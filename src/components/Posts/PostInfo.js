@@ -3,7 +3,7 @@ import React from 'react';
 const PostInfo = ({ item, index, bookmarks = false }) => {
   if (item.source === 'Reddit' || item.source === 'Hacker News') {
     return (
-      <a href={item.url} key={index}>
+      <a href={item.url} key={index} target='_blank' rel='noopener noreferrer'>
         <li>
           <p className='post-title'>{item.title}</p>
           <div className='post-info'>
@@ -17,7 +17,7 @@ const PostInfo = ({ item, index, bookmarks = false }) => {
     );
   } else if (item.source === 'Github Trending') {
     return (
-      <a href={item.url} key={index}>
+      <a href={item.url} key={index} target='_blank' rel='noopener noreferrer'>
         <li>
           <p className='post-title'>{item.title}</p>
           <div className='post-info'>
@@ -29,9 +29,22 @@ const PostInfo = ({ item, index, bookmarks = false }) => {
         </li>
       </a>
     );
+  } else if (item.source === 'New York Times') {
+    return (
+      <a href={item.url} key={index} target='_blank' rel='noopener noreferrer'>
+        <li>
+          <p className='post-title'>{item.title}</p>
+          <div className='post-info'>
+            <span>{item.source}</span>
+            <span>{item.author}</span>
+            <span>{item.section.toUpperCase()}</span>
+          </div>
+        </li>
+      </a>
+    );
   } else {
     return (
-      <a href={item.url} key={index}>
+      <a href={item.url} key={index} target='_blank' rel='noopener noreferrer'>
         <li>
           <p className='post-title'>{item.title}</p>
           <div className='post-info'>

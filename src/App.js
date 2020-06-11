@@ -10,7 +10,7 @@ import { Sidebar, Main, UserForm } from './components';
 import './App.css';
 
 function App() {
-  const [globalSelected, setGlobalSelected] = useState('Reddit');
+  const [globalSelected, setGlobalSelected] = useState('All Posts');
 
   return (
     <div style={{ display: 'flex' }}>
