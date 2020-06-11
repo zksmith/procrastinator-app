@@ -14,17 +14,17 @@ function App() {
 
   return (
     <div style={{ display: 'flex' }}>
-      <Sidebar
-        globalSelected={globalSelected}
-        setGlobalSelected={setGlobalSelected}
-      />
       <Router>
+        <Sidebar
+          globalSelected={globalSelected}
+          setGlobalSelected={setGlobalSelected}
+        />
         <Switch>
           <Route exact path='/'>
             <Main globalSelected={globalSelected} />
           </Route>
           <Route path='/bookmarks'>
-            <Main globalSelected={globalSelected} bookmarks />
+            <Main globalSelected={'Bookmarks'} />
           </Route>
           <Route path='/signin'>
             <UserForm type='signin' />

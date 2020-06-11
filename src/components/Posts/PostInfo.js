@@ -1,7 +1,19 @@
 import React from 'react';
 
 const PostInfo = ({ item, index, bookmarks = false }) => {
-  if (item.source === 'Reddit' || item.source === 'Hacker News') {
+  if (bookmarks) {
+    return (
+      <a href={item.url} key={index} target='_blank' rel='noopener noreferrer'>
+        <li>
+          <p className='post-title'>{item.title}</p>
+          <div className='post-info'>
+            <span>Reddit</span>
+            <span>Bookmarked Jan 1</span>
+          </div>
+        </li>
+      </a>
+    );
+  } else if (item.source === 'Reddit' || item.source === 'Hacker News') {
     return (
       <a href={item.url} key={index} target='_blank' rel='noopener noreferrer'>
         <li>

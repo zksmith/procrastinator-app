@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './Sidebar.css';
 
 const Sidebar = ({ globalSelected, setGlobalSelected }) => {
@@ -30,7 +32,8 @@ const Sidebar = ({ globalSelected, setGlobalSelected }) => {
           {linkTexts.map((name) => {
             if (name === 'All Posts') {
               return (
-                <button
+                <Link
+                  to='/'
                   key={name}
                   onClick={() => setGlobalSelected(name)}
                   className={`link ${
@@ -39,11 +42,26 @@ const Sidebar = ({ globalSelected, setGlobalSelected }) => {
                 >
                   <li>All Posts</li>
                   <li className='divider'></li>
-                </button>
+                </Link>
+              );
+            } else if (name === 'Twitch Streams') {
+              return (
+                <Link
+                  to='/'
+                  key={name}
+                  onClick={() => setGlobalSelected(name)}
+                  className={`link ${
+                    name === globalSelected ? 'selected' : ''
+                  }`}
+                >
+                  <li className='divider'></li>
+                  <li>{name}</li>
+                </Link>
               );
             } else {
               return (
-                <button
+                <Link
+                  to='/'
                   key={name}
                   onClick={() => setGlobalSelected(name)}
                   className={`link ${
@@ -51,10 +69,12 @@ const Sidebar = ({ globalSelected, setGlobalSelected }) => {
                   }`}
                 >
                   <li>{name}</li>
-                </button>
+                </Link>
               );
             }
           })}
+          <li className='divider'></li>
+          <li className='settings'>Settings</li>
         </ul>
       </div>
     </nav>

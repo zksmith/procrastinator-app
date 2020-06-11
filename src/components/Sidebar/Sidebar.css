@@ -15,7 +15,10 @@
   margin-left: 48px;
   list-style: none;
 }
-.sidebar ul button.selected {
+.sidebar ul a {
+  line-height: 30px;
+}
+.sidebar ul a.selected {
   color: #18191a;
   font-weight: bold;
 }
@@ -26,4 +29,7 @@
 }
 .fixed-container {
   position: fixed;
+}
+.sidebar li.settings {
+  cursor: not-allowed;
 }
