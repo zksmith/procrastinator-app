@@ -16,7 +16,10 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/'>
-            <Main />
+            <Main selected='All Posts' />
+          </Route>
+          <Route path='/bookmarks'>
+            <Main selected='Bookmarks' />
           </Route>
           <Route path='/signin'>
             <UserForm type='signin' />
