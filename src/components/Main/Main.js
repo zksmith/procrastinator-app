@@ -6,6 +6,8 @@ const Main = ({ bookmarks, globalSelected }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    setData([]);
+
     // ".replace(/\s/g, '')" is used to remove spaces
     fetch(
       `https://noworkdone-api.herokuapp.com/${globalSelected.replace(
@@ -20,7 +22,7 @@ const Main = ({ bookmarks, globalSelected }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [globalSelected]);
 
   return (
     <main className='main-section'>

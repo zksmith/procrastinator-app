@@ -11,6 +11,7 @@ import './App.css';
 
 function App() {
   const [globalSelected, setGlobalSelected] = useState('Reddit');
+
   return (
     <div style={{ display: 'flex' }}>
       <Sidebar

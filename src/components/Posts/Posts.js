@@ -17,10 +17,10 @@ const Posts = ({ selected, data, bookmarks }) => {
                   </div>
                 ) : (
                   <div className='post-info'>
-                    <span>Reddit</span>
-                    <span>100 pts</span>
-                    <span>by reihaz</span>
-                    <span>20 comments</span>
+                    <span>{item.source}</span>
+                    <span>{item.upvotes} pts</span>
+                    <span>by {item.author}</span>
+                    <span>{item.comments} comments</span>
                   </div>
                 )}
               </li>
