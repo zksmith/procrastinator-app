@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,16 +10,20 @@ import { Sidebar, Main, UserForm } from './components';
 import './App.css';
 
 function App() {
+  const [globalSelected, setGlobalSelected] = useState('Reddit');
   return (
     <div style={{ display: 'flex' }}>
-      <Sidebar />
+      <Sidebar
+        globalSelected={globalSelected}
+        setGlobalSelected={setGlobalSelected}
+      />
       <Router>
         <Switch>
           <Route exact path='/'>
-            <Main selected='All Posts' />
+            <Main globalSelected={globalSelected} />
           </Route>
           <Route path='/bookmarks'>
-            <Main selected='Bookmarks' />
+            <Main globalSelected={globalSelected} bookmarks />
           </Route>
           <Route path='/signin'>
             <UserForm type='signin' />

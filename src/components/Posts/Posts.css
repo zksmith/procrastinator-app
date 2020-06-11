@@ -20,6 +20,7 @@ h1 {
 }
 .posts .post-title {
   margin: 0 0 8px 0;
+  width: 90%;
 }
 .posts .post-info {
   color: rgb(170, 170, 170);

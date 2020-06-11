@@ -13,3 +13,15 @@ a {
 a:hover {
   text-decoration: underline;
 }
+button.link {
+  display: block;
+  border: none;
+  cursor: pointer;
+  color: #555a5a;
+  line-height: 30px;
+}
+button.link:hover,
+button.link:focus {
+  text-decoration: underline;
+  outline: none;
+}

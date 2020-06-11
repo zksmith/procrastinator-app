@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header, Posts } from '../';
 import './Main.css';
 
-const Main = ({ selected }) => {
+const Main = ({ bookmarks, globalSelected }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // ".replace(/\s/g, '')" is used to remove spaces
+    fetch(
+      `https://noworkdone-api.herokuapp.com/${globalSelected.replace(
+        /\s/g,
+        ''
+      )}`
+    )
+      .then((response) => response.json())
+      .then((redditData) => {
+        setData(redditData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <main className='main-section'>
       <Header />
-      <Posts selected={selected} />
+      <Posts selected={globalSelected} bookmarks={bookmarks} data={data} />
     </main>
   );
 };

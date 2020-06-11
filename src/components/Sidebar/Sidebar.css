@@ -1,6 +1,6 @@
 .sidebar {
   width: 330px;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 1%;
   background-color: #edeef0;
 }
@@ -15,11 +15,7 @@
   margin-left: 48px;
   list-style: none;
 }
-.sidebar ul a {
-  color: #555a5a;
-  line-height: 30px;
-}
-.sidebar ul a.selected {
+.sidebar ul button.selected {
   color: #18191a;
   font-weight: bold;
 }
@@ -27,4 +23,7 @@
   margin: 20px 0;
   height: 1px;
   background: linear-gradient(to right, #dcdcdc, rgba(206, 41, 41, 0));
+}
+.fixed-container {
+  position: fixed;
 }
