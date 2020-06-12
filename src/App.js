@@ -13,6 +13,7 @@ import {
   Posts,
   StreamsContainer,
   Logout,
+  Bookmarks,
 } from './components';
 
 import './App.css';
@@ -59,9 +60,9 @@ function App() {
                 <Posts data={data} selected={selected} />
               )}
             </Route>
-            {/* <Route path='/bookmarks'>
-            <Main selected={'Bookmarks'} />
-          </Route> */}
+            <Route path='/bookmarks'>
+              <Bookmarks user={user} data={[{ title: 'TEST' }]} />
+            </Route>
             <Route path='/signin'>
               <SignIn setUser={setUser} user={user} />
             </Route>

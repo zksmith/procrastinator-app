@@ -10,7 +10,7 @@ const Header = ({ user }) => {
         <span className='links-right'>
           {user ? (
             <>
-              <Link to='!#' className='btn action'>
+              <Link to='/bookmarks' className='btn action'>
                 Bookmarks
               </Link>
               <Link to='/logout'>Log Out</Link>
