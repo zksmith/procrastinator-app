@@ -12,6 +12,7 @@ import {
   Header,
   Posts,
   StreamsContainer,
+  Logout,
 } from './components';
 
 import './App.css';
@@ -19,6 +20,7 @@ import './App.css';
 function App() {
   const [selected, setSelected] = useState('All Posts');
   const [data, setData] = useState([]);
+  const [user, setUser] = useState(null);
 
   /*
     Clears the data before updating the global selected
@@ -48,7 +50,7 @@ function App() {
       <Router>
         <Sidebar selected={selected} changeSelected={changeSelected} />
         <main className='main-section'>
-          <Header />
+          <Header user={user} />
           <Switch>
             <Route exact path='/'>
               {selected === 'Twitch Streams' ? (
@@ -61,10 +63,13 @@ function App() {
             <Main selected={'Bookmarks'} />
           </Route> */}
             <Route path='/signin'>
-              <SignIn />
+              <SignIn setUser={setUser} user={user} />
             </Route>
             <Route path='/register'>
               <Register />
+            </Route>
+            <Route path='/logout'>
+              <Logout setUser={setUser} />
             </Route>
             <Route path='*'>
               <Redirect to='/' />
