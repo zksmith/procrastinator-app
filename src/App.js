@@ -7,7 +7,8 @@ import {
 } from 'react-router-dom';
 import {
   Sidebar,
-  UserForm,
+  Register,
+  SignIn,
   Header,
   Posts,
   StreamsContainer,
@@ -60,10 +61,10 @@ function App() {
             <Main selected={'Bookmarks'} />
           </Route> */}
             <Route path='/signin'>
-              <UserForm type='signin' />
+              <SignIn />
             </Route>
             <Route path='/register'>
-              <UserForm type='register' />
+              <Register />
             </Route>
             <Route path='*'>
               <Redirect to='/' />

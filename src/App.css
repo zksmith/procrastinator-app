@@ -7,3 +7,55 @@ h1 {
   margin-left: 20px;
   overflow: hidden;
 }
+.user-form {
+  width: 100%;
+  padding-top: 56px;
+}
+
+.user-form form {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(143, 143, 143, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.user-form form h2 {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-weight: 300;
+}
+
+.user-form form input {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2c3e50;
+  font-size: 13px;
+}
+
+.user-form form input[type='button'] {
+  width: 100px;
+  background: #c9804c;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px auto;
+  font-size: 16px;
+  font-weight: bold;
+}
+.user-form form input[type='button']:focus,
+.user-form form input[type='button']:hover {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #c9804c;
+}

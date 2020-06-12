@@ -9,10 +9,10 @@ const Header = () => {
         <span></span>
         <span className='links-right'>
           <Link to='/signin' className='btn'>
-            Log In
+            Sign In
           </Link>
           <Link to='/register' className='btn action'>
-            Sign Up
+            Register
           </Link>
         </span>
       </div>
