@@ -24,8 +24,10 @@ function App() {
     Avoids old data being sent when user clicks on sidebar link
   */
   const changeSelected = (string) => {
-    setData([]);
-    setSelected(string);
+    if (string !== selected) {
+      setData([]);
+      setSelected(string);
+    }
   };
 
   useEffect(() => {

@@ -13,7 +13,14 @@ function StreamsContainer({ data }) {
           const imageUrl = stream.thumbnail
             .replace('{width}', '320')
             .replace('{height}', '180');
-          return <StreamCard thumbnail={imageUrl} title={stream.title} />;
+          return (
+            <StreamCard
+              thumbnail={imageUrl}
+              title={stream.title}
+              user={stream.user}
+              viewers={stream.viewers}
+            />
+          );
         })}
       </div>
     </>

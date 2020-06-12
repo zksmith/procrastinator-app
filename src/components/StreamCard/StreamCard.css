@@ -1,0 +1,28 @@
+.stream-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 22%;
+  margin: 15px;
+}
+.stream-card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+.stream-card img {
+  width: 100%;
+}
+.stream-card p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 10px;
+}
+
+.stream-card .under-text {
+  color: rgb(170, 170, 170);
+  padding: 0 10px;
+  font-size: 13px;
+}
+.stream-card .under-text span {
+  margin-right: 10px;
+}
