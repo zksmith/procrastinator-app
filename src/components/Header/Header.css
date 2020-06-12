@@ -8,3 +8,16 @@
   width: 90%;
   max-width: 1100px;
 }
+.links-right a {
+  margin-right: 5px;
+}
+
+.btn {
+  background: #edeef0;
+  padding: 5px 10px;
+}
+
+.btn.action {
+  background-color: #c9804c;
+  color: #fff;
+}

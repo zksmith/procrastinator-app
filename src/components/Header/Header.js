@@ -7,7 +7,12 @@ const Header = () => {
       <div className='header-inner'>
         <span></span>
         <span className='links-right'>
-          <a href='/signin'>Sign In</a>
+          <a href='/signin' className='btn'>
+            Log In
+          </a>
+          <a href='/register' className='btn action'>
+            Sign Up
+          </a>
         </span>
       </div>
     </header>

@@ -12,9 +12,6 @@ const UserForm = ({ type }) => {
           <input type='email' placeholder='Email' />
           <input type='text' placeholder='Password' value='' />
           <input type='button' value='Register' />
-          <a href='/signin' className='under-link'>
-            Sign In
-          </a>
         </form>
       </div>
     );
@@ -26,9 +23,6 @@ const UserForm = ({ type }) => {
           <input type='email' placeholder='Email' />
           <input type='password' placeholder='Password' />
           <input type='button' value='Sign In' />
-          <a href='/register' className='under-link'>
-            Register
-          </a>
         </form>
       </div>
     );

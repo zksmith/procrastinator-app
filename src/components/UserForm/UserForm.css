@@ -37,20 +37,16 @@
 .user-form form input[type='button'] {
   width: 100px;
   background: #c9804c;
-  font-weight: bold;
   color: white;
   border: 0 none;
   border-radius: 1px;
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px auto;
+  font-size: 16px;
+  font-weight: bold;
 }
 .user-form form input[type='button']:focus,
 .user-form form input[type='button']:hover {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #c9804c;
-}
-
-.user-form form .under-link {
-  text-align: center;
-  font-size: 12px;
 }

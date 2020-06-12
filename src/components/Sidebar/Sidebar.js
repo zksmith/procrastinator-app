@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Sidebar.css';
 
-const Sidebar = ({ globalSelected, changeSelected }) => {
+const Sidebar = ({ selected, changeSelected }) => {
   const linkTexts = [
     'All Posts',
     'Reddit',
@@ -36,9 +36,7 @@ const Sidebar = ({ globalSelected, changeSelected }) => {
                   to='/'
                   key={name}
                   onClick={() => changeSelected(name)}
-                  className={`link ${
-                    name === globalSelected ? 'selected' : ''
-                  }`}
+                  className={`link ${name === selected ? 'selected' : ''}`}
                 >
                   <li>All Posts</li>
                   <li className='divider'></li>
@@ -50,9 +48,7 @@ const Sidebar = ({ globalSelected, changeSelected }) => {
                   to='/'
                   key={name}
                   onClick={() => changeSelected(name)}
-                  className={`link ${
-                    name === globalSelected ? 'selected' : ''
-                  }`}
+                  className={`link ${name === selected ? 'selected' : ''}`}
                 >
                   <li className='divider'></li>
                   <li>{name}</li>
@@ -64,9 +60,7 @@ const Sidebar = ({ globalSelected, changeSelected }) => {
                   to='/'
                   key={name}
                   onClick={() => changeSelected(name)}
-                  className={`link ${
-                    name === globalSelected ? 'selected' : ''
-                  }`}
+                  className={`link ${name === selected ? 'selected' : ''}`}
                 >
                   <li>{name}</li>
                 </Link>
