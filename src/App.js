@@ -42,26 +42,23 @@ function App() {
 
   const addBookmark = (title, url, source) => {
     if (user.id) {
-      const objectString = JSON.stringify([
-        ...user.bookmarks,
-        { title, url, source, date: new Date() },
-      ]);
-
       fetch('https://noworkdone-api.herokuapp.com/bookmark', {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           id: user.id,
-          bookmarks: objectString,
+          bookmarks: [
+            ...user.bookmarks,
+            { title, url, source, date: new Date() },
+          ],
         }),
       })
         .then((response) => response.json())
         .then((bookmarks) => {
           setUser({
             ...user,
-            bookmarks: JSON.parse(bookmarks),
+            bookmarks: bookmarks,
           });
-          console.log(JSON.parse(bookmarks));
         })
         .catch(console.log);
     }
