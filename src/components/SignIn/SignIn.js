@@ -41,6 +41,9 @@ const SignIn = ({ setUser, user }) => {
           onChange={(e) => setSignInPassword(e.target.value)}
         />
         <input type='button' value='Sign In' onClick={() => onSubmitSignIn()} />
+        <a href='/register' className='underlink'>
+          Create an account
+        </a>
       </form>
     </div>
   );

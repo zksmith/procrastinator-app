@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
-const Register = () => {
+const Register = ({ setUser, user }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -22,6 +23,10 @@ const Register = () => {
         }
       });
   };
+
+  if (user) {
+    return <Redirect to='/' />;
+  }
   return (
     <div className='user-form'>
       <form>
@@ -46,6 +51,9 @@ const Register = () => {
           value='Register'
           onClick={() => onSubmitRegister()}
         />
+        <a href='/signin' className='underlink'>
+          Sign in instead
+        </a>
       </form>
     </div>
   );

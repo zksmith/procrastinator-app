@@ -59,3 +59,7 @@ h1 {
 .user-form form input[type='button']:hover {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #c9804c;
 }
+.user-form form .underlink {
+  text-align: center;
+  font-size: 13px;
+}
