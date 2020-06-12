@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
@@ -7,12 +8,12 @@ const Header = () => {
       <div className='header-inner'>
         <span></span>
         <span className='links-right'>
-          <a href='/signin' className='btn'>
+          <Link to='/signin' className='btn'>
             Log In
-          </a>
-          <a href='/register' className='btn action'>
+          </Link>
+          <Link to='/register' className='btn action'>
             Sign Up
-          </a>
+          </Link>
         </span>
       </div>
     </header>
