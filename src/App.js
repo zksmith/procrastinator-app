@@ -29,21 +29,15 @@ function App() {
   };
 
   useEffect(() => {
-    if (!selected !== 'Bookmarks') {
-      // ".replace(/\s/g, '')" is used to remove spaces
-      fetch(
-        `https://noworkdone-api.herokuapp.com/${selected.replace(/\s/g, '')}`
-      )
-        .then((response) => response.json())
-        .then((apiData) => {
-          setData(apiData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      setData([{ title: 'TODO' }]);
-    }
+    // ".replace(/\s/g, '')" is used to remove spaces
+    fetch(`https://noworkdone-api.herokuapp.com/${selected.replace(/\s/g, '')}`)
+      .then((response) => response.json())
+      .then((apiData) => {
+        setData(apiData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [selected]);
 
   return (
