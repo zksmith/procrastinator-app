@@ -6,6 +6,10 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   color: #18191a;
 }
+h1,
+h2 {
+  margin: 0;
+}
 a {
   text-decoration: none;
   color: #18191a;

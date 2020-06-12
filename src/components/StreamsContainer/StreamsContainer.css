@@ -1,4 +1,4 @@
-h1 {
-  margin: 0 0 15px 20px;
-  font-size: 27px;
+.streams-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
