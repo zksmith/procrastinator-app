@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
-function Logout({ setUser }) {
+const Logout = ({ setUser }) => {
   useEffect(() => {
     setUser({
       id: '',
@@ -12,6 +12,6 @@ function Logout({ setUser }) {
     });
   }, [setUser]);
   return <Redirect to='/' />;
-}
+};
 
 export default Logout;

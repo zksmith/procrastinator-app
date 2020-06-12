@@ -3,7 +3,7 @@ import StreamCard from '../StreamCard/StreamCard';
 
 import './StreamsContainer.css';
 
-function StreamsContainer({ data }) {
+const StreamsContainer = ({ data }) => {
   return (
     <>
       <h1>Twitch Streams</h1>
@@ -30,6 +30,6 @@ function StreamsContainer({ data }) {
       </div>
     </>
   );
-}
+};
 
 export default StreamsContainer;
