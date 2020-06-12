@@ -24,7 +24,7 @@ const Register = ({ setUser, user }) => {
       });
   };
 
-  if (user) {
+  if (user.id) {
     return <Redirect to='/' />;
   }
   return (

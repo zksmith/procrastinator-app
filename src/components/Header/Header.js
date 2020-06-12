@@ -8,10 +8,10 @@ const Header = ({ user }) => {
       <div className='header-inner'>
         <span></span>
         <span className='links-right'>
-          {user ? (
+          {user.id ? (
             <>
               <Link to='/bookmarks' className='btn action'>
-                Bookmarks
+                Bookmarks ({user.bookmarks ? user.bookmarks.length : 0})
               </Link>
               <Link to='/logout'>Log Out</Link>
             </>

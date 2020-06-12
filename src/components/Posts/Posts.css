@@ -16,10 +16,12 @@
   margin: 0 0 8px 0;
   width: 90%;
 }
-.posts .post-info {
+.posts .post-info span {
+  font-size: 12px;
+  margin-right: 10px;
+  color: rgb(170, 170, 170);
+}
+.bookmark-btn.link {
   color: rgb(170, 170, 170);
   font-size: 12px;
-}
-.posts .post-info span {
-  margin-right: 10px;
 }

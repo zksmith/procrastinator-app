@@ -21,7 +21,13 @@ import './App.css';
 function App() {
   const [selected, setSelected] = useState('All Posts');
   const [data, setData] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    id: '',
+    name: '',
+    email: '',
+    bookmarks: [],
+    joined: '',
+  });
 
   /*
     Clears the data before updating the global selected
@@ -31,6 +37,33 @@ function App() {
     if (string !== selected) {
       setData([]);
       setSelected(string);
+    }
+  };
+
+  const addBookmark = (title, url, source) => {
+    if (user.id) {
+      const objectString = JSON.stringify([
+        ...user.bookmarks,
+        { title, url, source, date: new Date() },
+      ]);
+
+      fetch('https://noworkdone-api.herokuapp.com/bookmark', {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: user.id,
+          bookmarks: objectString,
+        }),
+      })
+        .then((response) => response.json())
+        .then((bookmarks) => {
+          setUser({
+            ...user,
+            bookmarks: JSON.parse(bookmarks),
+          });
+          console.log(JSON.parse(bookmarks));
+        })
+        .catch(console.log);
     }
   };
 
@@ -57,11 +90,15 @@ function App() {
               {selected === 'Twitch Streams' ? (
                 <StreamsContainer data={data} />
               ) : (
-                <Posts data={data} selected={selected} />
+                <Posts
+                  data={data}
+                  selected={selected}
+                  addBookmark={addBookmark}
+                />
               )}
             </Route>
             <Route path='/bookmarks'>
-              <Bookmarks user={user} data={[{ title: 'TEST' }]} />
+              <Bookmarks user={user} />
             </Route>
             <Route path='/signin'>
               <SignIn setUser={setUser} user={user} />

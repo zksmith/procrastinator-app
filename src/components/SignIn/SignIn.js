@@ -17,13 +17,15 @@ const SignIn = ({ setUser, user }) => {
       .then((response) => response.json())
       .then((user) => {
         if (user.id) {
-          console.log(user);
-          setUser(user);
+          setUser({
+            ...user,
+            bookmarks: JSON.parse(user.bookmarks),
+          });
         }
       })
       .catch((err) => console.log(err));
   };
-  if (user) {
+  if (user.id) {
     return <Redirect to='/' />;
   }
   return (

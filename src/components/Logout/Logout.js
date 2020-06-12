@@ -3,7 +3,13 @@ import { Redirect } from 'react-router-dom';
 
 function Logout({ setUser }) {
   useEffect(() => {
-    setUser(null);
+    setUser({
+      id: '',
+      name: '',
+      email: '',
+      bookmarks: [],
+      joined: '',
+    });
   }, [setUser]);
   return <Redirect to='/' />;
 }

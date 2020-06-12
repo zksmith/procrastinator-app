@@ -21,11 +21,12 @@ a:hover {
   text-decoration: underline;
 }
 button.link {
-  display: block;
+  display: inline;
   border: none;
   cursor: pointer;
   color: #555a5a;
   line-height: 30px;
+  background: none;
 }
 button.link:hover,
 button.link:focus {
