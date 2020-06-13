@@ -45,7 +45,7 @@ h1 {
 
 .user-form form input[type='button'] {
   width: 100px;
-  background: #c9804c;
+  background: #0079d3;
   color: white;
   border: 0 none;
   border-radius: 1px;
@@ -57,7 +57,7 @@ h1 {
 }
 .user-form form input[type='button']:focus,
 .user-form form input[type='button']:hover {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #c9804c;
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #0079d3;
 }
 .user-form form .underlink {
   text-align: center;

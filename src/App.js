@@ -101,7 +101,7 @@ function App() {
               <SignIn setUser={setUser} user={user} />
             </Route>
             <Route path='/register'>
-              <Register />
+              <Register setUser={setUser} user={user} />
             </Route>
             <Route path='/logout'>
               <Logout setUser={setUser} />
