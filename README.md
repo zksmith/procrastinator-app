@@ -44,6 +44,7 @@
 > Deployment
 
 - Heroku
+- Netlify
 
 ---
 
