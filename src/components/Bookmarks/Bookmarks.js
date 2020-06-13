@@ -6,7 +6,7 @@ const Bookmarks = ({ user, removeBookmark }) => {
   if (user.id) {
     return (
       <div>
-        {user.bookmarks ? (
+        {user.bookmarks.length > 0 ? (
           <Posts
             selected={'Bookmarks'}
             data={user.bookmarks}
