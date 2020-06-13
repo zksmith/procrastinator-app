@@ -7,7 +7,9 @@ const Register = ({ setUser, user }) => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  const onSubmitRegister = (event) => {
+  const onSubmitRegister = (e) => {
+    e.preventDefault();
+
     fetch('https://procrastinator-api.herokuapp.com/register', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -34,7 +36,7 @@ const Register = ({ setUser, user }) => {
   }
   return (
     <div className='user-form'>
-      <form>
+      <form onSubmit={(e) => onSubmitRegister(e)}>
         <h2>Register</h2>
         <input
           required
@@ -54,11 +56,7 @@ const Register = ({ setUser, user }) => {
           placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input
-          type='submit'
-          value='Register'
-          onClick={() => onSubmitRegister()}
-        />
+        <input type='submit' value='Register' />
         <a href='/signin' className='underlink'>
           Sign in instead
         </a>
