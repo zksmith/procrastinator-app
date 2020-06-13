@@ -4,13 +4,25 @@
 
 ---
 
+## Table of Contents
+
+- [Main Features](#features)
+- [Tech Used](#tech-used)
+- [Server](#server)
+- [Installation](#installation)
+- [License](#license)
+
+---
+
 ## Features
 
 ### Browse Posts
 
-<img src="./readme_assets/browse.gif" alt="dashboard" width="450">
+<img src="./readme_assets/browse.gif" alt="browse" width="450">
 
 ### Bookmark Posts
+
+<img src="./readme_assets/bookmark.gif" alt="bookmark" width="450">
 
 ---
 
