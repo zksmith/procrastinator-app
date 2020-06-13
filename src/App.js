@@ -47,7 +47,16 @@ function App() {
   };
 
   const addBookmark = (title, url, source) => {
+    const checkBookmark = (bookmark) => bookmark.title === title;
+
     if (user.id) {
+      // shows error and exits if bookmark already exist
+      const bookmarkExist = user.bookmarks.some(checkBookmark);
+      if (bookmarkExist) {
+        NotificationManager.error('Already bookmarked', 'Bookmarks');
+        return;
+      }
+
       fetch('https://procrastinator-api.herokuapp.com/bookmark', {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
