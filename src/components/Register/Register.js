@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { NotificationManager } from 'react-notifications';
 
 const Register = ({ setUser, user }) => {
   const [email, setEmail] = useState('');
@@ -19,7 +20,11 @@ const Register = ({ setUser, user }) => {
       .then((response) => response.json())
       .then((user) => {
         if (user.id) {
-          console.log(user);
+          setUser({
+            ...user,
+            bookmarks: JSON.parse(user.bookmarks),
+          });
+          NotificationManager.success(`Welcome, ${user.name}!`);
         }
       });
   };
