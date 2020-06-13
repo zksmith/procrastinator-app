@@ -16,7 +16,13 @@ import {
   Bookmarks,
 } from './components';
 
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+
 import './App.css';
+import 'react-notifications/lib/notifications.css';
 
 function App() {
   const [selected, setSelected] = useState('All Posts');
@@ -59,8 +65,11 @@ function App() {
             ...user,
             bookmarks: bookmarks,
           });
+          NotificationManager.success('Post bookmarked', 'Bookmarks');
         })
         .catch(console.log);
+    } else {
+      NotificationManager.info('Sign in to bookmark posts');
     }
   };
 
@@ -77,42 +86,45 @@ function App() {
   }, [selected]);
 
   return (
-    <div style={{ display: 'flex' }}>
-      <Router>
-        <Sidebar selected={selected} changeSelected={changeSelected} />
-        <main className='main-section'>
-          <Header user={user} />
-          <Switch>
-            <Route exact path='/'>
-              {selected === 'Twitch Streams' ? (
-                <StreamsContainer data={data} />
-              ) : (
-                <Posts
-                  data={data}
-                  selected={selected}
-                  addBookmark={addBookmark}
-                />
-              )}
-            </Route>
-            <Route path='/bookmarks'>
-              <Bookmarks user={user} />
-            </Route>
-            <Route path='/signin'>
-              <SignIn setUser={setUser} user={user} />
-            </Route>
-            <Route path='/register'>
-              <Register setUser={setUser} user={user} />
-            </Route>
-            <Route path='/logout'>
-              <Logout setUser={setUser} />
-            </Route>
-            <Route path='*'>
-              <Redirect to='/' />
-            </Route>
-          </Switch>
-        </main>
-      </Router>
-    </div>
+    <>
+      <div style={{ display: 'flex' }}>
+        <Router>
+          <Sidebar selected={selected} changeSelected={changeSelected} />
+          <main className='main-section'>
+            <Header user={user} />
+            <Switch>
+              <Route exact path='/'>
+                {selected === 'Twitch Streams' ? (
+                  <StreamsContainer data={data} />
+                ) : (
+                  <Posts
+                    data={data}
+                    selected={selected}
+                    addBookmark={addBookmark}
+                  />
+                )}
+              </Route>
+              <Route path='/bookmarks'>
+                <Bookmarks user={user} />
+              </Route>
+              <Route path='/signin'>
+                <SignIn setUser={setUser} user={user} />
+              </Route>
+              <Route path='/register'>
+                <Register setUser={setUser} user={user} />
+              </Route>
+              <Route path='/logout'>
+                <Logout setUser={setUser} />
+              </Route>
+              <Route path='*'>
+                <Redirect to='/' />
+              </Route>
+            </Switch>
+          </main>
+        </Router>
+      </div>
+      <NotificationContainer />
+    </>
   );
 }
 
