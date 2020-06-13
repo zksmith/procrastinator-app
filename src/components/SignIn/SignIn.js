@@ -5,7 +5,9 @@ const SignIn = ({ setUser, user }) => {
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
 
-  const onSubmitSignIn = () => {
+  const onSubmitSignIn = (e) => {
+    e.preventDefault();
+
     fetch('https://procrastinator-api.herokuapp.com/signin', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -29,20 +31,22 @@ const SignIn = ({ setUser, user }) => {
     return <Redirect to='/' />;
   }
   return (
-    <div className='user-form'>
+    <div className='user-form' onSubmit={(e) => onSubmitSignIn(e)}>
       <form action=''>
         <h2>Sign In</h2>
         <input
+          required
           type='email'
           placeholder='Email'
           onChange={(e) => setSignInEmail(e.target.value)}
         />
         <input
+          required
           type='password'
           placeholder='Password'
           onChange={(e) => setSignInPassword(e.target.value)}
         />
-        <input type='button' value='Sign In' onClick={() => onSubmitSignIn()} />
+        <input type='submit' value='Sign In' />
         <a href='/register' className='underlink'>
           Create an account
         </a>

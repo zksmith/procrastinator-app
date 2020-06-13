@@ -37,22 +37,25 @@ const Register = ({ setUser, user }) => {
       <form>
         <h2>Register</h2>
         <input
+          required
           type='name'
           placeholder='Name'
           onChange={(e) => setName(e.target.value)}
         />
         <input
+          required
           type='email'
           placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          required
           type='password'
           placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
-          type='button'
+          type='submit'
           value='Register'
           onClick={() => onSubmitRegister()}
         />
