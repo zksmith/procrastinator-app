@@ -8,7 +8,7 @@ const Register = ({ setUser, user }) => {
   const [name, setName] = useState('');
 
   const onSubmitRegister = (event) => {
-    fetch('https://noworkdone-api.herokuapp.com/register', {
+    fetch('https://procrastinator-api.herokuapp.com/register', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

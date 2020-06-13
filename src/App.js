@@ -48,7 +48,7 @@ function App() {
 
   const addBookmark = (title, url, source) => {
     if (user.id) {
-      fetch('https://noworkdone-api.herokuapp.com/bookmark', {
+      fetch('https://procrastinator-api.herokuapp.com/bookmark', {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -78,7 +78,7 @@ function App() {
       (item) => item.title !== title
     );
     if (user.id) {
-      fetch('https://noworkdone-api.herokuapp.com/bookmark', {
+      fetch('https://procrastinator-api.herokuapp.com/bookmark', {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -100,7 +100,9 @@ function App() {
 
   useEffect(() => {
     // ".replace(/\s/g, '')" is used to remove spaces
-    fetch(`https://noworkdone-api.herokuapp.com/${selected.replace(/\s/g, '')}`)
+    fetch(
+      `https://procrastinator-api.herokuapp.com/${selected.replace(/\s/g, '')}`
+    )
       .then((response) => response.json())
       .then((apiData) => {
         setData(apiData);

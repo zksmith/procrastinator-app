@@ -6,7 +6,7 @@ const SignIn = ({ setUser, user }) => {
   const [signInPassword, setSignInPassword] = useState('');
 
   const onSubmitSignIn = () => {
-    fetch('https://noworkdone-api.herokuapp.com/signin', {
+    fetch('https://procrastinator-api.herokuapp.com/signin', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
