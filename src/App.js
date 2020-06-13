@@ -69,7 +69,32 @@ function App() {
         })
         .catch(console.log);
     } else {
-      NotificationManager.info('Sign in to bookmark posts');
+      NotificationManager.warning('Sign in to bookmark posts');
+    }
+  };
+
+  const removeBookmark = (title) => {
+    const filteredBookmarks = user.bookmarks.filter(
+      (item) => item.title !== title
+    );
+    if (user.id) {
+      fetch('https://noworkdone-api.herokuapp.com/bookmark', {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: user.id,
+          bookmarks: filteredBookmarks,
+        }),
+      })
+        .then((response) => response.json())
+        .then((bookmarks) => {
+          setUser({
+            ...user,
+            bookmarks: bookmarks,
+          });
+          NotificationManager.success('Bookmark removed', 'Bookmarks');
+        })
+        .catch(console.log);
     }
   };
 
@@ -105,7 +130,7 @@ function App() {
                 )}
               </Route>
               <Route path='/bookmarks'>
-                <Bookmarks user={user} />
+                <Bookmarks user={user} removeBookmark={removeBookmark} />
               </Route>
               <Route path='/signin'>
                 <SignIn setUser={setUser} user={user} />

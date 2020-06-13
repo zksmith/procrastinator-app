@@ -1,6 +1,12 @@
 import React from 'react';
 
-const PostInfo = ({ item, index, bookmarks = false, addBookmark }) => {
+const PostInfo = ({
+  item,
+  index,
+  bookmarks = false,
+  addBookmark,
+  removeBookmark,
+}) => {
   const {
     source,
     url,
@@ -17,15 +23,23 @@ const PostInfo = ({ item, index, bookmarks = false, addBookmark }) => {
   if (bookmarks) {
     const jsDate = new Date(date);
     return (
-      <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-        <li>
+      <li>
+        <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
           <p className='post-title'>{title}</p>
-          <div className='post-info'>
+        </a>
+        <div className='post-info'>
+          <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
             <span>{source}</span>
             <span>bookmarked on {jsDate.toLocaleDateString()}</span>
-          </div>
-        </li>
-      </a>
+          </a>
+          <button
+            className='bookmark-btn link'
+            onClick={() => removeBookmark(title)}
+          >
+            Remove
+          </button>
+        </div>
+      </li>
     );
   } else if (source === 'Github Trending') {
     return (

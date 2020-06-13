@@ -4,7 +4,7 @@ import './PostInfo';
 import './Posts.css';
 import PostInfo from './PostInfo';
 
-const Posts = ({ selected, data, addBookmark }) => {
+const Posts = ({ selected, data, addBookmark, removeBookmark }) => {
   if (data.length) {
     return (
       <>
@@ -17,6 +17,7 @@ const Posts = ({ selected, data, addBookmark }) => {
               key={index}
               bookmarks={selected === 'Bookmarks'}
               addBookmark={addBookmark}
+              removeBookmark={removeBookmark}
             />
           ))}
         </ul>

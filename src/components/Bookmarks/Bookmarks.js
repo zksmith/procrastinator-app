@@ -2,12 +2,16 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Posts from '../Posts/Posts';
 
-const Bookmarks = ({ user }) => {
+const Bookmarks = ({ user, removeBookmark }) => {
   if (user.id) {
     return (
       <div>
         {user.bookmarks ? (
-          <Posts selected={'Bookmarks'} data={user.bookmarks} />
+          <Posts
+            selected={'Bookmarks'}
+            data={user.bookmarks}
+            removeBookmark={removeBookmark}
+          />
         ) : (
           <h1>No Bookmarks</h1>
         )}
