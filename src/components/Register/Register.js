@@ -42,6 +42,7 @@ const Register = ({ setUser, user }) => {
           required
           type='name'
           placeholder='Name'
+          autoFocus
           onChange={(e) => setName(e.target.value)}
         />
         <input

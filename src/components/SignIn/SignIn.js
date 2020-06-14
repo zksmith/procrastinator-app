@@ -38,6 +38,7 @@ const SignIn = ({ setUser, user }) => {
           required
           type='email'
           placeholder='Email'
+          autoFocus
           onChange={(e) => setSignInEmail(e.target.value)}
         />
         <input
