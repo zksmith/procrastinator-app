@@ -5,10 +5,10 @@ import './Posts.css';
 import PostInfo from './PostInfo';
 
 const Posts = ({ selected, data, addBookmark, removeBookmark }) => {
-  if (data.length) {
-    return (
-      <>
-        <h1>{selected}</h1>
+  return (
+    <>
+      <h1>{selected}</h1>
+      {data.length ? (
         <ul className='posts'>
           {data.map((item, index) => (
             <PostInfo
@@ -21,11 +21,11 @@ const Posts = ({ selected, data, addBookmark, removeBookmark }) => {
             />
           ))}
         </ul>
-      </>
-    );
-  } else {
-    return <h1>Loading...</h1>;
-  }
+      ) : (
+        <h4>Loading...</h4>
+      )}
+    </>
+  );
 };
 
 export default Posts;

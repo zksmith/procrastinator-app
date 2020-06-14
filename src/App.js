@@ -111,17 +111,28 @@ function App() {
   const toggleMobileSidebar = () => showMobileSidebar(!mobileSidebar);
 
   useEffect(() => {
+    let isCancelled = false;
+
     // ".replace(/\s/g, '')" is used to remove spaces
     fetch(
       `https://procrastinator-api.herokuapp.com/${selected.replace(/\s/g, '')}`
     )
       .then((response) => response.json())
       .then((apiData) => {
-        setData(apiData);
+        if (!isCancelled) {
+          setData(apiData);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        if (!isCancelled) {
+          console.log(err);
+        }
       });
+
+    //cleanup
+    return () => {
+      isCancelled = true;
+    };
   }, [selected]);
 
   return (
