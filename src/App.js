@@ -46,7 +46,7 @@ function App() {
     }
   };
 
-  const addBookmark = (title, url, source) => {
+  const addBookmark = (title, url, source, commentsUrl) => {
     const checkBookmark = (bookmark) => bookmark.title === title;
 
     if (user.id) {
@@ -64,7 +64,7 @@ function App() {
           id: user.id,
           bookmarks: [
             ...user.bookmarks,
-            { title, url, source, date: new Date() },
+            { title, url, source, commentsUrl, date: new Date() },
           ],
         }),
       })

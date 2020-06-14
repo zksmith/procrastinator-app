@@ -16,6 +16,7 @@ const PostInfo = ({
     forks,
     section,
     comments,
+    commentsUrl,
     upvotes,
     date,
   } = item;
@@ -24,14 +25,28 @@ const PostInfo = ({
     const jsDate = new Date(date);
     return (
       <li>
-        <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-          <p className='post-title'>{title}</p>
+        <a
+          href={url}
+          key={index}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='post-title'
+        >
+          <p>{title}</p>
         </a>
         <div className='post-info'>
-          <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-            <span>{source}</span>
-            <span>bookmarked on {jsDate.toLocaleDateString()}</span>
-          </a>
+          <span>{source}</span>
+          <span>bookmarked on {jsDate.toLocaleDateString()}</span>
+          {commentsUrl ? (
+            <a
+              href={commentsUrl}
+              key={index}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <span>comments</span>
+            </a>
+          ) : null}
           <button
             className='bookmark-btn link'
             onClick={() => removeBookmark(title)}
@@ -44,16 +59,20 @@ const PostInfo = ({
   } else if (source === 'Github Trending') {
     return (
       <li>
-        <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-          <p className='post-title'>{title}</p>
+        <a
+          href={url}
+          key={index}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='post-title'
+        >
+          <p>{title}</p>
         </a>
         <div className='post-info'>
-          <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-            <span>{source}</span>
-            <span>by {author}</span>
-            <span>{stars} stars</span>
-            <span>{forks} forks</span>
-          </a>
+          <span>{source}</span>
+          <span>by {author}</span>
+          <span>{stars} stars</span>
+          <span>{forks} forks</span>
           <button
             className='bookmark-btn link'
             onClick={() => addBookmark(title, url, source)}
@@ -66,15 +85,19 @@ const PostInfo = ({
   } else if (source === 'New York Times') {
     return (
       <li>
-        <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-          <p className='post-title'>{title}</p>
+        <a
+          href={url}
+          key={index}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='post-title'
+        >
+          <p>{title}</p>
         </a>
         <div className='post-info'>
-          <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-            <span>{source}</span>
-            <span>{author}</span>
-            <span>{section.toUpperCase()}</span>
-          </a>
+          <span>{source}</span>
+          <span>{author}</span>
+          <span>{section.toUpperCase()}</span>
           <button
             className='bookmark-btn link'
             onClick={() => addBookmark(title, url, source)}
@@ -87,19 +110,30 @@ const PostInfo = ({
   } else {
     return (
       <li>
-        <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-          <p className='post-title'>{title}</p>
+        <a
+          href={url}
+          key={index}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='post-title'
+        >
+          <p>{title}</p>
         </a>
         <div className='post-info'>
-          <a href={url} key={index} target='_blank' rel='noopener noreferrer'>
-            <span>{source}</span>
-            <span>{upvotes} pts</span>
-            <span>by {author}</span>
+          <span>{source}</span>
+          <span>{upvotes} pts</span>
+          <span>by {author}</span>
+          <a
+            href={commentsUrl}
+            key={index}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <span>{comments} comments</span>
           </a>
           <button
             className='bookmark-btn link'
-            onClick={() => addBookmark(title, url, source)}
+            onClick={() => addBookmark(title, url, source, commentsUrl)}
           >
             Bookmark
           </button>

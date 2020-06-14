@@ -9,12 +9,15 @@
 .posts li:hover {
   background-color: #edeef0;
 }
-.posts a:hover {
-  text-decoration: none;
-}
 .posts .post-title {
   margin: 0 0 8px 0;
   width: 90%;
+}
+.posts .post-title:hover {
+  text-decoration: none;
+}
+.posts .post-title:visited {
+  color: #9b9b9b;
 }
 .posts .post-info span {
   font-size: 12px;
