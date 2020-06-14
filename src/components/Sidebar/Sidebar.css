@@ -33,3 +33,15 @@
 .sidebar li.settings {
   cursor: not-allowed;
 }
+
+@media (max-width: 800px) {
+  .sidebar {
+    position: fixed;
+    width: 50%;
+    transform: translateX(-500px);
+    transition: transform 0.5s ease-in-out;
+  }
+  .sidebar.show {
+    transform: translateX(-20px);
+  }
+}

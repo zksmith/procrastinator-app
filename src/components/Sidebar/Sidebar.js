@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Sidebar.css';
 
-const Sidebar = ({ selected, changeSelected }) => {
+const Sidebar = ({ selected, changeSelected, showMobile }) => {
   const linkTexts = [
     'All Posts',
     'Reddit',
@@ -14,7 +14,7 @@ const Sidebar = ({ selected, changeSelected }) => {
   ];
 
   return (
-    <nav className='sidebar'>
+    <nav className={`sidebar ${showMobile ? 'show' : null}`}>
       <div className='fixed-container'>
         <div className='sidebar-top'>
           <a href='/'>

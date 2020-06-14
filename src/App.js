@@ -25,6 +25,7 @@ import './App.css';
 import 'react-notifications/lib/notifications.css';
 
 function App() {
+  const [mobileSidebar, showMobileSidebar] = useState(false);
   const [selected, setSelected] = useState('All Posts');
   const [data, setData] = useState([]);
   const [user, setUser] = useState({
@@ -107,6 +108,8 @@ function App() {
     }
   };
 
+  const toggleMobileSidebar = () => showMobileSidebar(!mobileSidebar);
+
   useEffect(() => {
     // ".replace(/\s/g, '')" is used to remove spaces
     fetch(
@@ -125,9 +128,13 @@ function App() {
     <>
       <div style={{ display: 'flex' }}>
         <Router>
-          <Sidebar selected={selected} changeSelected={changeSelected} />
+          <Sidebar
+            selected={selected}
+            changeSelected={changeSelected}
+            showMobile={mobileSidebar}
+          />
           <main className='main-section'>
-            <Header user={user} />
+            <Header user={user} toggleMobileSidebar={toggleMobileSidebar} />
             <Switch>
               <Route exact path='/'>
                 {selected === 'Twitch Streams' ? (

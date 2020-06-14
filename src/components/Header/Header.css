@@ -21,3 +21,18 @@
   background-color: #0079d3;
   color: #fff;
 }
+.menu-btn {
+  background: none;
+  border: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: none;
+  margin: 6px 10px 0 0;
+}
+
+@media (max-width: 800px) {
+  .menu-btn {
+    display: inline;
+  }
+}
