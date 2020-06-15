@@ -1,4 +1,6 @@
 .streams-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  padding-right: 20xp;
 }
