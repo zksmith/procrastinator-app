@@ -1,6 +1,6 @@
 # Procrastinator App
 
-> Procrastinator App is a webapp to browse and bookmark posts from various news and media sites.
+> Procrastinator App is a web app to browse and bookmark posts from various news and media sites.
 
 ---
 
