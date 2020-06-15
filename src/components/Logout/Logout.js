@@ -11,6 +11,7 @@ const Logout = ({ setUser }) => {
       bookmarks: [],
       joined: '',
     });
+    localStorage.removeItem('token');
     NotificationManager.info('Signed Out');
   }, [setUser]);
   return <Redirect to='/' />;

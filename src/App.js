@@ -113,6 +113,24 @@ function App() {
   useEffect(() => {
     let isCancelled = false;
 
+    if (!user.id && window.localStorage.getItem('token')) {
+      fetch('https://procrastinator-api.herokuapp.com/user', {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((user) => {
+          setUser({
+            ...user,
+            bookmarks: JSON.parse(user.bookmarks),
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+
     // ".replace(/\s/g, '')" is used to remove spaces
     fetch(
       `https://procrastinator-api.herokuapp.com/${selected.replace(/\s/g, '')}`
@@ -133,7 +151,7 @@ function App() {
     return () => {
       isCancelled = true;
     };
-  }, [selected]);
+  }, [selected, user.id]);
 
   return (
     <>

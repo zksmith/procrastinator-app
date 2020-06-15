@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Posts from '../Posts/Posts';
 
 const Bookmarks = ({ user, removeBookmark }) => {
-  if (user.id) {
+  if (user.id || window.localStorage.getItem('token')) {
     return (
       <div>
         {user.bookmarks.length > 0 ? (
