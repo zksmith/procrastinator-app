@@ -128,7 +128,9 @@ function App() {
             bookmarks: JSON.parse(user.bookmarks),
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          window.localStorage.removeItem('token');
+        });
     }
 
     // ".replace(/\s/g, '')" is used to remove spaces
