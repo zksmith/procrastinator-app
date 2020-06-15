@@ -20,7 +20,8 @@ const SignIn = ({ setUser, user }) => {
       .then(({ user, new_token }) => {
         if (user.id) {
           setUser({
-            ...user,
+            id: user.id,
+            name: user.name,
             bookmarks: JSON.parse(user.bookmarks),
           });
           window.localStorage.setItem('token', new_token);

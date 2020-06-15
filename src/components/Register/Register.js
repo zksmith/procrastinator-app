@@ -14,16 +14,17 @@ const Register = ({ setUser, user }) => {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: email,
-        password: password,
-        name: name,
+        email,
+        password,
+        name,
       }),
     })
       .then((response) => response.json())
       .then(({ user, new_token }) => {
         if (user.id) {
           setUser({
-            ...user,
+            id: user.id,
+            name: user.name,
             bookmarks: JSON.parse(user.bookmarks),
           });
           window.localStorage.setItem('token', new_token);

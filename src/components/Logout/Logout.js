@@ -7,9 +7,7 @@ const Logout = ({ setUser }) => {
     setUser({
       id: '',
       name: '',
-      email: '',
       bookmarks: [],
-      joined: '',
     });
     localStorage.removeItem('token');
     NotificationManager.info('Signed Out');

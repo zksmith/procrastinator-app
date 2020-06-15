@@ -31,27 +31,14 @@ function App() {
   const [user, setUser] = useState({
     id: '',
     name: '',
-    email: '',
     bookmarks: [],
-    joined: '',
   });
-
-  /*
-    Clears the data before updating the global selected
-    Avoids old data being sent when user clicks on sidebar link
-  */
-  const changeSelected = (string) => {
-    if (string !== selected) {
-      setData([]);
-      setSelected(string);
-    }
-  };
 
   const addBookmark = (title, url, source, commentsUrl) => {
     const checkBookmark = (bookmark) => bookmark.title === title;
 
     if (user.id) {
-      // shows error and exits if bookmark already exist
+      // shows error and exits function if bookmark already exist
       const bookmarkExist = user.bookmarks.some(checkBookmark);
       if (bookmarkExist) {
         NotificationManager.error('Already bookmarked', 'Bookmarks');
@@ -110,10 +97,9 @@ function App() {
 
   const toggleMobileSidebar = () => showMobileSidebar(!mobileSidebar);
 
+  // useEffect to log in the user if a token is present
   useEffect(() => {
-    let isCancelled = false;
-
-    if (!user.id && window.localStorage.getItem('token')) {
+    if (window.localStorage.getItem('token')) {
       fetch('https://procrastinator-api.herokuapp.com/user', {
         method: 'get',
         headers: {
@@ -124,7 +110,8 @@ function App() {
         .then((response) => response.json())
         .then((user) => {
           setUser({
-            ...user,
+            id: user.id,
+            name: user.name,
             bookmarks: JSON.parse(user.bookmarks),
           });
         })
@@ -132,6 +119,12 @@ function App() {
           window.localStorage.removeItem('token');
         });
     }
+  }, []);
+
+  // useEffect to handle data requests
+  useEffect(() => {
+    let isCancelled = false;
+    setData([]);
 
     // ".replace(/\s/g, '')" is used to remove spaces
     fetch(
@@ -153,7 +146,7 @@ function App() {
     return () => {
       isCancelled = true;
     };
-  }, [selected, user.id]);
+  }, [selected]);
 
   return (
     <>
@@ -161,7 +154,7 @@ function App() {
         <Router>
           <Sidebar
             selected={selected}
-            changeSelected={changeSelected}
+            changeSelected={setSelected}
             showMobile={mobileSidebar}
           />
           <main className='main-section'>
