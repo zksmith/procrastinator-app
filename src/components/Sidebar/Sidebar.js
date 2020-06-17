@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { GlobalContext } from '../../context/GlobalState';
 
 import logo from '../../logo.svg';
 import './Sidebar.css';
 
-const Sidebar = ({ selected, changeSelected, showMobile }) => {
+const Sidebar = ({ selected, changeSelected }) => {
+  const { mobileSidebarShown } = useContext(GlobalContext);
+
   const linkTexts = [
     'All Posts',
     'Reddit',
@@ -15,7 +18,7 @@ const Sidebar = ({ selected, changeSelected, showMobile }) => {
   ];
 
   return (
-    <nav className={`sidebar ${showMobile ? 'show' : null}`}>
+    <nav className={`sidebar ${mobileSidebarShown ? 'show' : null}`}>
       <div className='fixed-container'>
         <div className='sidebar-top'>
           <a href='/'>

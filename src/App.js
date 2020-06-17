@@ -16,6 +16,8 @@ import {
   Bookmarks,
 } from './components';
 
+import { GlobalProvider } from './context/GlobalState';
+
 import {
   NotificationContainer,
   NotificationManager,
@@ -25,7 +27,6 @@ import './App.css';
 import 'react-notifications/lib/notifications.css';
 
 function App() {
-  const [mobileSidebar, showMobileSidebar] = useState(false);
   const [selected, setSelected] = useState('All Posts');
   const [data, setData] = useState([]);
   const [user, setUser] = useState({
@@ -95,8 +96,6 @@ function App() {
     }
   };
 
-  const toggleMobileSidebar = () => showMobileSidebar(!mobileSidebar);
-
   // useEffect to log in the user if a token is present
   useEffect(() => {
     if (window.localStorage.getItem('token')) {
@@ -149,16 +148,12 @@ function App() {
   }, [selected]);
 
   return (
-    <>
+    <GlobalProvider>
       <div style={{ display: 'flex' }}>
         <Router>
-          <Sidebar
-            selected={selected}
-            changeSelected={setSelected}
-            showMobile={mobileSidebar}
-          />
+          <Sidebar selected={selected} changeSelected={setSelected} />
           <main className='main-section'>
-            <Header user={user} toggleMobileSidebar={toggleMobileSidebar} />
+            <Header user={user} />
             <Switch>
               <Route exact path='/'>
                 {selected === 'Twitch Streams' ? (
@@ -191,7 +186,7 @@ function App() {
         </Router>
       </div>
       <NotificationContainer />
-    </>
+    </GlobalProvider>
   );
 }
 
