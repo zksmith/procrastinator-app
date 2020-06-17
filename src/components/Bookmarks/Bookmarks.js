@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import Posts from '../Posts/Posts';
+import { GlobalContext } from '../../context/GlobalState';
 
-const Bookmarks = ({ user, removeBookmark }) => {
-  if (user.id || window.localStorage.getItem('token')) {
+const Bookmarks = () => {
+  const { bookmarks, removeBookmark, userId } = useContext(GlobalContext);
+
+  if (userId || window.localStorage.getItem('token')) {
     return (
       <div>
-        {user.bookmarks.length > 0 ? (
+        {bookmarks.length > 0 ? (
           <Posts
             selected={'Bookmarks'}
-            data={user.bookmarks}
+            data={bookmarks}
             removeBookmark={removeBookmark}
           />
         ) : (

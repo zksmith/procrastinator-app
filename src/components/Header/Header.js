@@ -4,20 +4,24 @@ import { GlobalContext } from '../../context/GlobalState';
 
 import './Header.css';
 
-const Header = ({ user }) => {
-  const { toggleSidebar } = useContext(GlobalContext);
+const Header = () => {
+  const { toggleSidebar, bookmarks, userId, logOut } = useContext(
+    GlobalContext
+  );
 
   return (
     <header className='header'>
       <div className='header-inner'>
         <span></span>
         <span className='links-right'>
-          {user.id ? (
+          {userId ? (
             <>
               <Link to='/bookmarks' className='btn action'>
-                Bookmarks ({user.bookmarks ? user.bookmarks.length : 0})
+                Bookmarks ({bookmarks ? bookmarks.length : 0})
               </Link>
-              <Link to='/logout'>Log Out</Link>
+              <Link to='/' onClick={() => logOut()}>
+                Log Out
+              </Link>
             </>
           ) : (
             <>

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 
 import './PostInfo';
 import './Posts.css';
 import PostInfo from './PostInfo';
 
-const Posts = ({ selected, data, addBookmark, removeBookmark }) => {
+const Posts = ({ selected }) => {
+  const { bookmarks, displayedData } = useContext(GlobalContext);
+  const data = selected === 'Bookmarks' ? bookmarks : displayedData;
+
   return (
     <>
       <h1>{selected}</h1>
@@ -16,8 +20,6 @@ const Posts = ({ selected, data, addBookmark, removeBookmark }) => {
               index={index}
               key={index}
               bookmarks={selected === 'Bookmarks'}
-              addBookmark={addBookmark}
-              removeBookmark={removeBookmark}
             />
           ))}
         </ul>

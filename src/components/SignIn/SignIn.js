@@ -1,36 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 import { Redirect } from 'react-router-dom';
 
-const SignIn = ({ setUser, user }) => {
+const SignIn = () => {
+  const { signIn, userId } = useContext(GlobalContext);
+
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
 
   const onSubmitSignIn = (e) => {
     e.preventDefault();
 
-    fetch('https://procrastinator-api.herokuapp.com/signin', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: signInEmail,
-        password: signInPassword,
-      }),
-    })
-      .then((response) => response.json())
-      .then(({ user, new_token }) => {
-        if (user.id) {
-          setUser({
-            id: user.id,
-            name: user.name,
-            bookmarks: JSON.parse(user.bookmarks),
-          });
-          window.localStorage.setItem('token', new_token);
-        }
-      })
-      .catch((err) => console.log(err));
+    signIn(signInEmail, signInPassword);
   };
 
-  if (user.id) {
+  if (userId) {
     return <Redirect to='/' />;
   }
   return (

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from './context/GlobalState';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,118 +13,31 @@ import {
   Header,
   Posts,
   StreamsContainer,
-  Logout,
   Bookmarks,
 } from './components';
 
-import { GlobalProvider } from './context/GlobalState';
-
-import {
-  NotificationContainer,
-  NotificationManager,
-} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
 
 import './App.css';
 import 'react-notifications/lib/notifications.css';
 
 function App() {
+  const { getUserByToken, setDisplayedData } = useContext(GlobalContext);
+
   const [selected, setSelected] = useState('All Posts');
-  const [data, setData] = useState([]);
-  const [user, setUser] = useState({
-    id: '',
-    name: '',
-    bookmarks: [],
-  });
-
-  const addBookmark = (title, url, source, commentsUrl) => {
-    const checkBookmark = (bookmark) => bookmark.title === title;
-
-    if (user.id) {
-      // shows error and exits function if bookmark already exist
-      const bookmarkExist = user.bookmarks.some(checkBookmark);
-      if (bookmarkExist) {
-        NotificationManager.error('Already bookmarked', 'Bookmarks');
-        return;
-      }
-
-      fetch('https://procrastinator-api.herokuapp.com/bookmark', {
-        method: 'put',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: user.id,
-          bookmarks: [
-            ...user.bookmarks,
-            { title, url, source, commentsUrl, date: new Date() },
-          ],
-        }),
-      })
-        .then((response) => response.json())
-        .then((bookmarks) => {
-          setUser({
-            ...user,
-            bookmarks: bookmarks,
-          });
-          NotificationManager.success('Post bookmarked', 'Bookmarks');
-        })
-        .catch(console.log);
-    } else {
-      NotificationManager.warning('Sign in to bookmark posts');
-    }
-  };
-
-  const removeBookmark = (title) => {
-    const filteredBookmarks = user.bookmarks.filter(
-      (item) => item.title !== title
-    );
-    if (user.id) {
-      fetch('https://procrastinator-api.herokuapp.com/bookmark', {
-        method: 'put',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: user.id,
-          bookmarks: filteredBookmarks,
-        }),
-      })
-        .then((response) => response.json())
-        .then((bookmarks) => {
-          setUser({
-            ...user,
-            bookmarks: bookmarks,
-          });
-          NotificationManager.success('Bookmark removed', 'Bookmarks');
-        })
-        .catch(console.log);
-    }
-  };
 
   // useEffect to log in the user if a token is present
   useEffect(() => {
     if (window.localStorage.getItem('token')) {
-      fetch('https://procrastinator-api.herokuapp.com/user', {
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${window.localStorage.getItem('token')}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((user) => {
-          setUser({
-            id: user.id,
-            name: user.name,
-            bookmarks: JSON.parse(user.bookmarks),
-          });
-        })
-        .catch((err) => {
-          window.localStorage.removeItem('token');
-        });
+      getUserByToken(window.localStorage.getItem('token'));
     }
+    // eslint-disable-next-line
   }, []);
 
   // useEffect to handle data requests
   useEffect(() => {
     let isCancelled = false;
-    setData([]);
+    setDisplayedData([]);
 
     // ".replace(/\s/g, '')" is used to remove spaces
     fetch(
@@ -132,7 +46,7 @@ function App() {
       .then((response) => response.json())
       .then((apiData) => {
         if (!isCancelled) {
-          setData(apiData);
+          setDisplayedData(apiData);
         }
       })
       .catch((err) => {
@@ -145,38 +59,32 @@ function App() {
     return () => {
       isCancelled = true;
     };
+    // eslint-disable-next-line
   }, [selected]);
 
   return (
-    <GlobalProvider>
+    <>
       <div style={{ display: 'flex' }}>
         <Router>
           <Sidebar selected={selected} changeSelected={setSelected} />
           <main className='main-section'>
-            <Header user={user} />
+            <Header />
             <Switch>
               <Route exact path='/'>
                 {selected === 'Twitch Streams' ? (
-                  <StreamsContainer data={data} />
+                  <StreamsContainer />
                 ) : (
-                  <Posts
-                    data={data}
-                    selected={selected}
-                    addBookmark={addBookmark}
-                  />
+                  <Posts selected={selected} />
                 )}
               </Route>
               <Route path='/bookmarks'>
-                <Bookmarks user={user} removeBookmark={removeBookmark} />
+                <Bookmarks />
               </Route>
               <Route path='/signin'>
-                <SignIn setUser={setUser} user={user} />
+                <SignIn />
               </Route>
               <Route path='/register'>
-                <Register setUser={setUser} user={user} />
-              </Route>
-              <Route path='/logout'>
-                <Logout setUser={setUser} />
+                <Register />
               </Route>
               <Route path='*'>
                 <Redirect to='/' />
@@ -186,7 +94,7 @@ function App() {
         </Router>
       </div>
       <NotificationContainer />
-    </GlobalProvider>
+    </>
   );
 }
 

@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 
-const PostInfo = ({
-  item,
-  index,
-  bookmarks = false,
-  addBookmark,
-  removeBookmark,
-}) => {
+const PostInfo = ({ item, bookmarks = false }) => {
+  const { addBookmark, removeBookmark } = useContext(GlobalContext);
   const {
     source,
     url,
@@ -27,7 +23,6 @@ const PostInfo = ({
       <li>
         <a
           href={url}
-          key={index}
           target='_blank'
           rel='noopener noreferrer'
           className='post-title'
@@ -38,12 +33,7 @@ const PostInfo = ({
           <span>{source}</span>
           <span>bookmarked on {jsDate.toLocaleDateString()}</span>
           {commentsUrl ? (
-            <a
-              href={commentsUrl}
-              key={index}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
+            <a href={commentsUrl} target='_blank' rel='noopener noreferrer'>
               <span>comments</span>
             </a>
           ) : null}
@@ -61,7 +51,6 @@ const PostInfo = ({
       <li>
         <a
           href={url}
-          key={index}
           target='_blank'
           rel='noopener noreferrer'
           className='post-title'
@@ -75,7 +64,7 @@ const PostInfo = ({
           <span>{forks} forks</span>
           <button
             className='bookmark-btn link'
-            onClick={() => addBookmark(title, url, source)}
+            onClick={() => addBookmark({ title, url, source })}
           >
             Bookmark
           </button>
@@ -87,7 +76,6 @@ const PostInfo = ({
       <li>
         <a
           href={url}
-          key={index}
           target='_blank'
           rel='noopener noreferrer'
           className='post-title'
@@ -100,7 +88,7 @@ const PostInfo = ({
           <span>{section.toUpperCase()}</span>
           <button
             className='bookmark-btn link'
-            onClick={() => addBookmark(title, url, source)}
+            onClick={() => addBookmark({ title, url, source })}
           >
             Bookmark
           </button>
@@ -112,7 +100,6 @@ const PostInfo = ({
       <li>
         <a
           href={url}
-          key={index}
           target='_blank'
           rel='noopener noreferrer'
           className='post-title'
@@ -123,17 +110,12 @@ const PostInfo = ({
           <span>{source}</span>
           <span>{upvotes} pts</span>
           <span>by {author}</span>
-          <a
-            href={commentsUrl}
-            key={index}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
+          <a href={commentsUrl} target='_blank' rel='noopener noreferrer'>
             <span>{comments} comments</span>
           </a>
           <button
             className='bookmark-btn link'
-            onClick={() => addBookmark(title, url, source, commentsUrl)}
+            onClick={() => addBookmark({ title, url, source, commentsUrl })}
           >
             Bookmark
           </button>

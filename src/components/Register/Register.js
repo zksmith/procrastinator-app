@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 import { Redirect } from 'react-router-dom';
-import { NotificationManager } from 'react-notifications';
 
-const Register = ({ setUser, user }) => {
+const Register = () => {
+  const { register, userId } = useContext(GlobalContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -10,30 +12,10 @@ const Register = ({ setUser, user }) => {
   const onSubmitRegister = (e) => {
     e.preventDefault();
 
-    fetch('https://procrastinator-api.herokuapp.com/register', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password,
-        name,
-      }),
-    })
-      .then((response) => response.json())
-      .then(({ user, new_token }) => {
-        if (user.id) {
-          setUser({
-            id: user.id,
-            name: user.name,
-            bookmarks: JSON.parse(user.bookmarks),
-          });
-          window.localStorage.setItem('token', new_token);
-          NotificationManager.success(`Welcome, ${user.name}!`);
-        }
-      });
+    register(email, password, name);
   };
 
-  if (user.id) {
+  if (userId) {
     return <Redirect to='/' />;
   }
   return (
