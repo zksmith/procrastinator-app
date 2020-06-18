@@ -33,3 +33,12 @@ button.link:focus {
   text-decoration: underline;
   outline: none;
 }
+
+/* Dark mode styles */
+body.darkmode {
+  background-color: #171717;
+  color: #fff;
+}
+.darkmode a {
+  color: #fff;
+}

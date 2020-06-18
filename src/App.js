@@ -22,17 +22,26 @@ import './App.css';
 import 'react-notifications/lib/notifications.css';
 
 function App() {
-  const { getUserByToken, setDisplayedData } = useContext(GlobalContext);
+  const { getUserByToken, setDisplayedData, darkmode } = useContext(
+    GlobalContext
+  );
 
   const [selected, setSelected] = useState('All Posts');
 
-  // useEffect to log in the user if a token is present
   useEffect(() => {
+    // get user info if token is present
     if (window.localStorage.getItem('token')) {
       getUserByToken(window.localStorage.getItem('token'));
     }
+    if (darkmode) {
+      console.log(darkmode);
+      document.getElementsByTagName('body')[0].classList.add('darkmode');
+    } else {
+      document.getElementsByTagName('body')[0].classList.remove('darkmode');
+    }
+
     // eslint-disable-next-line
-  }, []);
+  }, [darkmode]);
 
   // useEffect to handle data requests
   useEffect(() => {

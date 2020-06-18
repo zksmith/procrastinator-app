@@ -5,6 +5,11 @@ export default (state, action) => {
         ...state,
         mobileSidebarShown: !state.mobileSidebarShown,
       };
+    case 'TOGGLE_DARKMODE':
+      return {
+        ...state,
+        darkmode: !state.darkmode,
+      };
     case 'SET_DISPLAYED_DATA':
       return {
         ...state,

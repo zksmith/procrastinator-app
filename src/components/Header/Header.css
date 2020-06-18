@@ -12,9 +12,10 @@
   margin-right: 5px;
 }
 
-.btn {
+a.btn {
   background: #edeef0;
   padding: 5px 10px;
+  color: #000;
 }
 .btn:hover {
   opacity: 0.9;

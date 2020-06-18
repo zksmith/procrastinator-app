@@ -28,3 +28,8 @@
   color: rgb(170, 170, 170);
   font-size: 12px;
 }
+
+/* darkmode styles */
+.darkmode .posts li:hover {
+  background-color: #1c1c1c;
+}

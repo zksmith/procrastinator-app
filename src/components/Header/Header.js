@@ -3,16 +3,29 @@ import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../context/GlobalState';
 
 import './Header.css';
+import moonicon from '../../assets/moon.svg';
+import sunicon from '../../assets/sun.svg';
 
 const Header = () => {
-  const { toggleSidebar, bookmarks, userId, logOut } = useContext(
-    GlobalContext
-  );
+  const {
+    toggleSidebar,
+    toggleDarkmode,
+    bookmarks,
+    userId,
+    logOut,
+    darkmode,
+  } = useContext(GlobalContext);
 
   return (
     <header className='header'>
       <div className='header-inner'>
-        <span></span>
+        <button className='link' onClick={() => toggleDarkmode()}>
+          <img
+            src={darkmode ? sunicon : moonicon}
+            alt='dark mode'
+            title='Toggle Dark Mode'
+          />
+        </button>
         <span className='links-right'>
           {userId ? (
             <>

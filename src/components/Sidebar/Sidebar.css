@@ -45,3 +45,11 @@
     transform: translateX(-20px);
   }
 }
+
+/* Darkmode styles */
+.darkmode .sidebar {
+  background-color: #1c1c1c;
+}
+.darkmode .sidebar ul a.selected {
+  color: #dcdcdc;
+}

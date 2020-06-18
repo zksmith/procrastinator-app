@@ -8,6 +8,7 @@ const initialState = {
   mobileSidebarShown: false,
   bookmarks: [],
   userId: null,
+  darkmode: localStorage.getItem('darkmode') === 'true' || false,
 };
 
 // Create Context
@@ -21,6 +22,14 @@ export const GlobalProvider = ({ children }) => {
   const toggleSidebar = () => {
     dispatch({
       type: 'TOGGLE_SIDEBAR',
+    });
+  };
+
+  // Toggle dark mode
+  const toggleDarkmode = () => {
+    localStorage.setItem('darkmode', !state.darkmode);
+    dispatch({
+      type: 'TOGGLE_DARKMODE',
     });
   };
 
@@ -122,7 +131,7 @@ export const GlobalProvider = ({ children }) => {
         });
       })
       .catch((err) => {
-        window.localStorage.removeItem('token');
+        localStorage.removeItem('token');
       });
   };
 
@@ -146,7 +155,7 @@ export const GlobalProvider = ({ children }) => {
             type: 'UPDATE_BOOKMARKS',
             payload: JSON.parse(user.bookmarks),
           });
-          window.localStorage.setItem('token', new_token);
+          localStorage.setItem('token', new_token);
         }
       })
       .catch((err) => console.log(err));
@@ -173,7 +182,7 @@ export const GlobalProvider = ({ children }) => {
             type: 'UPDATE_BOOKMARKS',
             payload: JSON.parse(user.bookmarks),
           });
-          window.localStorage.setItem('token', new_token);
+          localStorage.setItem('token', new_token);
         }
       });
   };
@@ -185,8 +194,10 @@ export const GlobalProvider = ({ children }) => {
         mobileSidebarShown: state.mobileSidebarShown,
         bookmarks: state.bookmarks,
         userId: state.userId,
+        darkmode: state.darkmode,
         setDisplayedData,
         toggleSidebar,
+        toggleDarkmode,
         addBookmark,
         removeBookmark,
         getUserByToken,
