@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 import StreamCard from '../StreamCard/StreamCard';
 
 import './StreamsContainer.css';
 
-const StreamsContainer = ({ data }) => {
+const StreamsContainer = () => {
+  const { displayedData } = useContext(GlobalContext);
+
   return (
     <>
       <h1>Twitch Streams</h1>
       <div className='streams-container'>
-        {data.map((stream, index) => {
+        {displayedData.map((stream, index) => {
           // If statement to fix bug that caused app to crash if the user changes to "Twitch Streams" while posts are loading
           if (stream.thumbnail) {
             const imageUrl = stream.thumbnail
