@@ -16,6 +16,10 @@
   background: #edeef0;
   padding: 5px 10px;
 }
+.btn:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
 
 .btn.action {
   background-color: #0079d3;
