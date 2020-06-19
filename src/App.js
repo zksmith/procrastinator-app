@@ -33,8 +33,8 @@ function App() {
     if (window.localStorage.getItem('token')) {
       getUserByToken(window.localStorage.getItem('token'));
     }
+
     if (darkmode) {
-      console.log(darkmode);
       document.getElementsByTagName('body')[0].classList.add('darkmode');
     } else {
       document.getElementsByTagName('body')[0].classList.remove('darkmode');

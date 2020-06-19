@@ -116,7 +116,7 @@ export const GlobalProvider = ({ children }) => {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        'x-auth-token': token,
       },
     })
       .then((response) => response.json())
@@ -135,30 +135,32 @@ export const GlobalProvider = ({ children }) => {
       });
   };
 
-  const signIn = (email, password) => {
-    fetch('https://procrastinator-api.herokuapp.com/signin', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((response) => response.json())
-      .then(({ user, new_token }) => {
-        if (user.id) {
-          dispatch({
-            type: 'SET_USER_ID',
-            payload: user.id,
-          });
-          dispatch({
-            type: 'UPDATE_BOOKMARKS',
-            payload: JSON.parse(user.bookmarks),
-          });
-          localStorage.setItem('token', new_token);
+  const signIn = async (email, password) => {
+    try {
+      const response = await fetch(
+        'https://procrastinator-api.herokuapp.com/signin',
+        {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
         }
-      })
-      .catch((err) => console.log(err));
+      );
+      const { user, new_token } = await response.json();
+      dispatch({
+        type: 'SET_USER_ID',
+        payload: user.id,
+      });
+      dispatch({
+        type: 'UPDATE_BOOKMARKS',
+        payload: JSON.parse(user.bookmarks),
+      });
+      localStorage.setItem('token', new_token);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const register = (email, password, name) => {
