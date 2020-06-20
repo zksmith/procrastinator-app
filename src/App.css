@@ -62,3 +62,9 @@ h1 {
   text-align: center;
   font-size: 13px;
 }
+
+/* darkmode styles */
+.darkmode .user-form form {
+  background-color: #1c1c1c;
+  box-shadow: none;
+}

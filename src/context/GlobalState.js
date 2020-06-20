@@ -186,7 +186,8 @@ export const GlobalProvider = ({ children }) => {
           });
           localStorage.setItem('token', new_token);
         }
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
