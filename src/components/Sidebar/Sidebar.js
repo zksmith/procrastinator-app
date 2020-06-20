@@ -18,7 +18,7 @@ const Sidebar = ({ selected, changeSelected }) => {
   ];
 
   return (
-    <nav className={`sidebar ${mobileSidebarShown ? 'show' : null}`}>
+    <nav className={`sidebar ${mobileSidebarShown ? 'show' : ''}`}>
       <div className='fixed-container'>
         <div className='sidebar-top'>
           <a href='/'>
