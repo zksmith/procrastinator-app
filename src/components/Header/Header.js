@@ -22,7 +22,7 @@ const Header = () => {
         <button className='link' onClick={() => toggleDarkmode()}>
           <img
             src={darkmode ? sunicon : moonicon}
-            alt='dark mode'
+            alt='toggle dark mode'
             title='Toggle Dark Mode'
           />
         </button>

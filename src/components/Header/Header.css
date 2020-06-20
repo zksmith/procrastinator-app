@@ -41,3 +41,8 @@ a.btn {
     display: inline;
   }
 }
+
+/* darkmode styles */
+.darkmode .menu-btn svg {
+  fill: #fff;
+}

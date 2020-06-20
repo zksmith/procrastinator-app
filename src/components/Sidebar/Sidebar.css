@@ -53,3 +53,7 @@
 .darkmode .sidebar ul a.selected {
   color: #dcdcdc;
 }
+
+.darkmode .sidebar svg {
+  fill: #fff;
+}

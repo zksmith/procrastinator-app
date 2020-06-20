@@ -2,12 +2,11 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../context/GlobalState';
 
-import logo from '../../assets/logo.svg';
-import whitelogo from '../../assets/whitelogo.svg';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 import './Sidebar.css';
 
 const Sidebar = ({ selected, changeSelected }) => {
-  const { mobileSidebarShown, darkmode } = useContext(GlobalContext);
+  const { mobileSidebarShown } = useContext(GlobalContext);
 
   const linkTexts = [
     'All Posts',
@@ -23,7 +22,7 @@ const Sidebar = ({ selected, changeSelected }) => {
       <div className='fixed-container'>
         <div className='sidebar-top'>
           <a href='/'>
-            <img src={darkmode ? whitelogo : logo} alt='logo' />
+            <Logo />
           </a>
         </div>
         <ul>
