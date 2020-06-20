@@ -22,7 +22,7 @@ import './App.css';
 import 'react-notifications/lib/notifications.css';
 
 function App() {
-  const { getUserByToken, setDisplayedData, darkmode } = useContext(
+  const { getUserByToken, setDisplayedData, darkmode, userId } = useContext(
     GlobalContext
   );
 
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     // get user info if token is present
-    if (window.localStorage.getItem('token')) {
+    if (window.localStorage.getItem('token') && !userId) {
       getUserByToken(window.localStorage.getItem('token'));
     }
 

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../context/GlobalState';
 
 import './Header.css';
-import moonicon from '../../assets/moon.svg';
-import sunicon from '../../assets/sun.svg';
+import { ReactComponent as MoonIcon } from '../../assets/moon.svg';
+import { ReactComponent as SunIcon } from '../../assets/sun.svg';
 
 const Header = () => {
   const {
@@ -20,11 +20,7 @@ const Header = () => {
     <header className='header'>
       <div className='header-inner'>
         <button className='link' onClick={() => toggleDarkmode()}>
-          <img
-            src={darkmode ? sunicon : moonicon}
-            alt='toggle dark mode'
-            title='Toggle Dark Mode'
-          />
+          {darkmode ? <SunIcon /> : <MoonIcon />}
         </button>
         <span className='links-right'>
           {userId ? (
