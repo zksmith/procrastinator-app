@@ -53,7 +53,7 @@ export const GlobalProvider = ({ children }) => {
     NotificationManager.info('Signed Out');
   };
 
-  const addBookmark = (bookmarkObj) => {
+  const addBookmark = async (bookmarkObj) => {
     const checkBookmark = (bookmark) => bookmark.title === bookmarkObj.title;
 
     if (state.userId) {
@@ -64,75 +64,90 @@ export const GlobalProvider = ({ children }) => {
         return;
       }
 
-      fetch('https://procrastinator-api.herokuapp.com/bookmark', {
-        method: 'put',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: state.userId,
-          bookmarks: [...state.bookmarks, { ...bookmarkObj, date: new Date() }],
-        }),
-      })
-        .then((response) => response.json())
-        .then((bookmarks) => {
-          dispatch({
-            type: 'UPDATE_BOOKMARKS',
-            payload: bookmarks,
-          });
-          NotificationManager.success('Post bookmarked', 'Bookmarks');
-        })
-        .catch(console.log);
+      try {
+        const response = await fetch(
+          'https://procrastinator-api.herokuapp.com/bookmark',
+          {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: state.userId,
+              bookmarks: [
+                ...state.bookmarks,
+                { ...bookmarkObj, date: new Date() },
+              ],
+            }),
+          }
+        );
+
+        const bookmarks = await response.json();
+        dispatch({
+          type: 'UPDATE_BOOKMARKS',
+          payload: bookmarks,
+        });
+        NotificationManager.success('Post bookmarked', 'Bookmarks');
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       NotificationManager.warning('Sign in to bookmark posts');
     }
   };
 
-  const removeBookmark = (title) => {
+  const removeBookmark = async (selectedTitle) => {
     const filteredBookmarks = state.bookmarks.filter(
-      (item) => item.title !== title
+      (item) => item.title !== selectedTitle
     );
-    if (state.userId) {
-      fetch('https://procrastinator-api.herokuapp.com/bookmark', {
-        method: 'put',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: state.userId,
-          bookmarks: filteredBookmarks,
-        }),
-      })
-        .then((response) => response.json())
-        .then((bookmarks) => {
-          dispatch({
-            type: 'UPDATE_BOOKMARKS',
-            payload: bookmarks,
-          });
-          NotificationManager.success('Bookmark removed', 'Bookmarks');
-        })
-        .catch(console.log);
+
+    try {
+      const response = await fetch(
+        'https://procrastinator-api.herokuapp.com/bookmark',
+        {
+          method: 'put',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: state.userId,
+            bookmarks: filteredBookmarks,
+          }),
+        }
+      );
+
+      const bookmarks = await response.json();
+      dispatch({
+        type: 'UPDATE_BOOKMARKS',
+        payload: bookmarks,
+      });
+      NotificationManager.success('Bookmark removed', 'Bookmarks');
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const getUserByToken = (token) => {
-    fetch('https://procrastinator-api.herokuapp.com/user', {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': token,
-      },
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        dispatch({
-          type: 'SET_USER_ID',
-          payload: user.id,
-        });
-        dispatch({
-          type: 'UPDATE_BOOKMARKS',
-          payload: JSON.parse(user.bookmarks),
-        });
-      })
-      .catch((err) => {
-        localStorage.removeItem('token');
+  const getUserByToken = async (token) => {
+    try {
+      const response = await fetch(
+        'https://procrastinator-api.herokuapp.com/user',
+        {
+          method: 'get',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-auth-token': token,
+          },
+        }
+      );
+
+      const user = await response.json();
+      dispatch({
+        type: 'SET_USER_ID',
+        payload: user.id,
       });
+      dispatch({
+        type: 'UPDATE_BOOKMARKS',
+        payload: JSON.parse(user.bookmarks),
+      });
+    } catch (err) {
+      localStorage.removeItem('token');
+    }
   };
 
   const signIn = async (email, password) => {
@@ -148,6 +163,7 @@ export const GlobalProvider = ({ children }) => {
           }),
         }
       );
+
       const { user, new_token } = await response.json();
       dispatch({
         type: 'SET_USER_ID',
@@ -163,31 +179,34 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const register = (email, password, name) => {
-    fetch('https://procrastinator-api.herokuapp.com/register', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password,
-        name,
-      }),
-    })
-      .then((response) => response.json())
-      .then(({ user, new_token }) => {
-        if (user.id) {
-          dispatch({
-            type: 'SET_USER_ID',
-            payload: user.id,
-          });
-          dispatch({
-            type: 'UPDATE_BOOKMARKS',
-            payload: JSON.parse(user.bookmarks),
-          });
-          localStorage.setItem('token', new_token);
+  const register = async (email, password, name) => {
+    try {
+      const response = fetch(
+        'https://procrastinator-api.herokuapp.com/register',
+        {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            password,
+            name,
+          }),
         }
-      })
-      .catch((err) => console.log(err));
+      );
+
+      const { user, new_token } = await response.json();
+      dispatch({
+        type: 'SET_USER_ID',
+        payload: user.id,
+      });
+      dispatch({
+        type: 'UPDATE_BOOKMARKS',
+        payload: JSON.parse(user.bookmarks),
+      });
+      localStorage.setItem('token', new_token);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
