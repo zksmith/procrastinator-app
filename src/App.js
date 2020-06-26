@@ -36,12 +36,10 @@ function App() {
 
     if (darkmode) {
       document.getElementsByTagName('body')[0].classList.add('darkmode');
-    } else {
-      document.getElementsByTagName('body')[0].classList.remove('darkmode');
     }
 
     // eslint-disable-next-line
-  }, [darkmode]);
+  }, []);
 
   // useEffect to handle data requests
   useEffect(() => {

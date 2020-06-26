@@ -28,6 +28,7 @@ export const GlobalProvider = ({ children }) => {
   // Toggle dark mode
   const toggleDarkmode = () => {
     localStorage.setItem('darkmode', !state.darkmode);
+    document.getElementsByTagName('body')[0].classList.toggle('darkmode');
     dispatch({
       type: 'TOGGLE_DARKMODE',
     });
