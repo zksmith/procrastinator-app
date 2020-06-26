@@ -182,7 +182,7 @@ export const GlobalProvider = ({ children }) => {
 
   const register = async (email, password, name) => {
     try {
-      const response = fetch(
+      const response = await fetch(
         'https://procrastinator-api.herokuapp.com/register',
         {
           method: 'post',
