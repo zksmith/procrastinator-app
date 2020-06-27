@@ -38,6 +38,11 @@ const SignIn = () => {
         <a href='/register' className='underlink'>
           Create an account
         </a>
+        <h2 style={{ marginBottom: 0 }}>Demo Credentials</h2>
+        <ul style={{ margin: 0 }}>
+          <li>Email: demo@demo.com</li>
+          <li>Password: 123456</li>
+        </ul>
       </form>
     </div>
   );
