@@ -74,4 +74,4 @@ The page will reload if you make edits.<br>
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2019 © <a href="http://zahiersmith.com" target="_blank">Zahier Smith</a>.
+- Copyright 2020 © <a href="http://zahiersmith.com" target="_blank">Zahier Smith</a>.
