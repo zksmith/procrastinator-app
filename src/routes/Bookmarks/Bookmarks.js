@@ -1,25 +1,23 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import Posts from '../Posts/Posts';
+import { PostInfo } from '../../components';
 import { GlobalContext } from '../../context/GlobalState';
 
 const Bookmarks = () => {
-  const { bookmarks, removeBookmark, userId } = useContext(GlobalContext);
+  const { bookmarks, userId } = useContext(GlobalContext);
 
   if (userId || window.localStorage.getItem('token')) {
-    return (
-      <div>
-        {bookmarks.length > 0 ? (
-          <Posts
-            selected={'Bookmarks'}
-            data={bookmarks}
-            removeBookmark={removeBookmark}
-          />
-        ) : (
-          <h1>No Bookmarks</h1>
-        )}
-      </div>
-    );
+    if (bookmarks?.length > 0) {
+      return (
+        <ul>
+          {bookmarks.map((bookmark, index) => (
+            <PostInfo item={bookmark} key={index} bookmarks />
+          ))}
+        </ul>
+      );
+    } else {
+      return <h1>No Bookmarks</h1>;
+    }
   }
   return <Redirect to='/signin' />;
 };

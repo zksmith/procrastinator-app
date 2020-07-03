@@ -7,11 +7,13 @@ body {
   color: #18191a;
 }
 h1,
-h2 {
-  margin: 0;
-}
+h2,
 p {
   margin: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
 }
 a {
   text-decoration: none;

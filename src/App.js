@@ -7,7 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { Sidebar, Header } from './components';
-import { Posts, Bookmarks, Streams, SignIn, Register } from './routes';
+import { Home, Bookmarks, Streams, SignIn, Register } from './routes';
 
 import { NotificationContainer } from 'react-notifications';
 
@@ -74,7 +74,7 @@ function App() {
                 {selected === 'Twitch Streams' ? (
                   <Streams />
                 ) : (
-                  <Posts selected={selected} />
+                  <Home selected={selected} />
                 )}
               </Route>
               <Route path='/bookmarks'>

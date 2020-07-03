@@ -1,25 +1,21 @@
-.posts {
-  list-style: none;
-  padding: 0;
-}
-.posts li {
+.infoLi {
   width: 100%;
   padding: 12px 0;
 }
-.posts li:hover {
+.infoLi:hover {
   background-color: #edeef0;
 }
-.posts .post-title {
+.post-title {
   margin: 0 0 8px 0;
   width: 90%;
 }
-.posts .post-title:hover {
+.post-title:hover {
   text-decoration: none;
 }
-.posts .post-title:visited {
+.post-title:visited {
   color: #9b9b9b;
 }
-.posts .post-info span {
+.post-info span {
   font-size: 12px;
   margin-right: 10px;
   color: rgb(170, 170, 170);
@@ -30,6 +26,6 @@
 }
 
 /* darkmode styles */
-.darkmode .posts li:hover {
+.darkmode .infoLi:hover {
   background-color: #1c1c1c;
 }

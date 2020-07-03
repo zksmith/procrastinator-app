@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
+import './PostInfo.css';
 
 const PostInfo = ({ item, bookmarks = false }) => {
   const { addBookmark, removeBookmark } = useContext(GlobalContext);
@@ -20,7 +21,7 @@ const PostInfo = ({ item, bookmarks = false }) => {
   if (bookmarks) {
     const jsDate = new Date(date);
     return (
-      <li>
+      <li className='infoLi'>
         <a
           href={url}
           target='_blank'
@@ -48,7 +49,7 @@ const PostInfo = ({ item, bookmarks = false }) => {
     );
   } else if (source === 'Github Trending') {
     return (
-      <li>
+      <li className='infoLi'>
         <a
           href={url}
           target='_blank'
@@ -73,7 +74,7 @@ const PostInfo = ({ item, bookmarks = false }) => {
     );
   } else if (source === 'New York Times') {
     return (
-      <li>
+      <li className='infoLi'>
         <a
           href={url}
           target='_blank'
@@ -97,7 +98,7 @@ const PostInfo = ({ item, bookmarks = false }) => {
     );
   } else {
     return (
-      <li>
+      <li className='infoLi'>
         <a
           href={url}
           target='_blank'
