@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
-import StreamCard from '../StreamCard/StreamCard';
+import { StreamCard } from '../../components';
 
-import './StreamsContainer.css';
+import './Streams.css';
 
-const StreamsContainer = () => {
+const Streams = () => {
   const { displayedData } = useContext(GlobalContext);
 
   return (
@@ -35,4 +35,4 @@ const StreamsContainer = () => {
   );
 };
 
-export default StreamsContainer;
+export default Streams;

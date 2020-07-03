@@ -6,15 +6,8 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import {
-  Sidebar,
-  Register,
-  SignIn,
-  Header,
-  Posts,
-  StreamsContainer,
-  Bookmarks,
-} from './components';
+import { Sidebar, Header } from './components';
+import { Posts, Bookmarks, Streams, SignIn, Register } from './routes';
 
 import { NotificationContainer } from 'react-notifications';
 
@@ -79,7 +72,7 @@ function App() {
             <Switch>
               <Route exact path='/'>
                 {selected === 'Twitch Streams' ? (
-                  <StreamsContainer />
+                  <Streams />
                 ) : (
                   <Posts selected={selected} />
                 )}

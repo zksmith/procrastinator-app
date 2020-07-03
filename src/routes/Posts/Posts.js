@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 
-import './PostInfo';
 import './Posts.css';
-import PostInfo from './PostInfo';
+import { PostInfo } from '../../components';
 
 const Posts = ({ selected }) => {
   const { bookmarks, displayedData } = useContext(GlobalContext);
