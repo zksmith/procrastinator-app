@@ -8,14 +8,16 @@ const Home = ({ selected }) => {
   return (
     <>
       <h1>{selected}</h1>
-      {displayedData.length ? (
+      {displayedData?.length ? (
         <ul>
           {displayedData.map((item, index) => (
             <PostInfo item={item} key={index} />
           ))}
         </ul>
       ) : (
-        <h4>Loading...</h4>
+        <h4>
+          {displayedData?.length === 0 ? `Error loading data` : `Loading...`}
+        </h4>
       )}
     </>
   );

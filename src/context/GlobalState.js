@@ -4,7 +4,7 @@ import { NotificationManager } from 'react-notifications';
 
 // Initial State
 const initialState = {
-  displayedData: [],
+  displayedData: null,
   mobileSidebarShown: false,
   bookmarks: [],
   userId: null,

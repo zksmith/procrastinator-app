@@ -37,7 +37,7 @@ function App() {
   // useEffect to handle data requests
   useEffect(() => {
     let isCancelled = false;
-    setDisplayedData([]);
+    setDisplayedData(null);
 
     // ".replace(/\s/g, '')" is used to remove spaces
     fetch(
