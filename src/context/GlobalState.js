@@ -140,7 +140,8 @@ export const GlobalProvider = ({ children }) => {
       });
       localStorage.setItem('token', new_token);
     } catch (err) {
-      NotificationManager.error(err.statusText);
+      const errorMsg = await err.json();
+      NotificationManager.error(errorMsg);
     }
   };
 
@@ -157,7 +158,8 @@ export const GlobalProvider = ({ children }) => {
       });
       localStorage.setItem('token', new_token);
     } catch (err) {
-      NotificationManager.error(err.statusText);
+      const errorMsg = await err.json();
+      NotificationManager.error(errorMsg);
     }
   };
 
