@@ -44,9 +44,9 @@ function App() {
       `https://procrastinator-api.herokuapp.com/${selected.replace(/\s/g, '')}`
     )
       .then((response) => response.json())
-      .then((apiData) => {
+      .then((json) => {
         if (!isCancelled) {
-          setDisplayedData(apiData);
+          setDisplayedData(json);
         }
       })
       .catch((err) => {

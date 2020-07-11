@@ -1,6 +1,12 @@
 import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 import { NotificationManager } from 'react-notifications';
+import {
+  userSignIn,
+  registerUser,
+  userFetchByToken,
+  updateUserBookmarks,
+} from '../services/users';
 
 // Initial State
 const initialState = {
@@ -57,6 +63,7 @@ export const GlobalProvider = ({ children }) => {
   const addBookmark = async (bookmarkObj) => {
     const checkBookmark = (bookmark) => bookmark.title === bookmarkObj.title;
 
+    // Only bookmark if user is signedin
     if (state.userId) {
       // shows error and exits function if bookmark already exist
       const bookmarkExist = state.bookmarks.some(checkBookmark);
@@ -65,23 +72,12 @@ export const GlobalProvider = ({ children }) => {
         return;
       }
 
+      const newBookmarks = [
+        ...state.bookmarks,
+        { ...bookmarkObj, date: new Date() },
+      ];
       try {
-        const response = await fetch(
-          'https://procrastinator-api.herokuapp.com/bookmark',
-          {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              id: state.userId,
-              bookmarks: [
-                ...state.bookmarks,
-                { ...bookmarkObj, date: new Date() },
-              ],
-            }),
-          }
-        );
-
-        const bookmarks = await response.json();
+        const bookmarks = await updateUserBookmarks(state.userId, newBookmarks);
         dispatch({
           type: 'UPDATE_BOOKMARKS',
           payload: bookmarks,
@@ -101,19 +97,10 @@ export const GlobalProvider = ({ children }) => {
     );
 
     try {
-      const response = await fetch(
-        'https://procrastinator-api.herokuapp.com/bookmark',
-        {
-          method: 'put',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            id: state.userId,
-            bookmarks: filteredBookmarks,
-          }),
-        }
+      const bookmarks = await updateUserBookmarks(
+        state.userId,
+        filteredBookmarks
       );
-
-      const bookmarks = await response.json();
       dispatch({
         type: 'UPDATE_BOOKMARKS',
         payload: bookmarks,
@@ -126,18 +113,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getUserByToken = async (token) => {
     try {
-      const response = await fetch(
-        'https://procrastinator-api.herokuapp.com/user',
-        {
-          method: 'get',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-auth-token': token,
-          },
-        }
-      );
-
-      const user = await response.json();
+      const user = await userFetchByToken(token);
       dispatch({
         type: 'SET_USER_ID',
         payload: user.id,
@@ -153,19 +129,7 @@ export const GlobalProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     try {
-      const response = await fetch(
-        'https://procrastinator-api.herokuapp.com/signin',
-        {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
-
-      const { user, new_token } = await response.json();
+      const { user, new_token } = await userSignIn(email, password);
       dispatch({
         type: 'SET_USER_ID',
         payload: user.id,
@@ -176,26 +140,13 @@ export const GlobalProvider = ({ children }) => {
       });
       localStorage.setItem('token', new_token);
     } catch (err) {
-      console.log(err);
+      NotificationManager.error(err.statusText);
     }
   };
 
   const register = async (email, password, name) => {
     try {
-      const response = await fetch(
-        'https://procrastinator-api.herokuapp.com/register',
-        {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            password,
-            name,
-          }),
-        }
-      );
-
-      const { user, new_token } = await response.json();
+      const { user, new_token } = await registerUser(email, password, name);
       dispatch({
         type: 'SET_USER_ID',
         payload: user.id,
@@ -206,7 +157,7 @@ export const GlobalProvider = ({ children }) => {
       });
       localStorage.setItem('token', new_token);
     } catch (err) {
-      console.log(err);
+      NotificationManager.error(err.statusText);
     }
   };
 
