@@ -7,6 +7,8 @@ import './Streams.css';
 const Streams = () => {
   const { displayedData } = useContext(GlobalContext);
 
+  if (!displayedData) return 'Loading...';
+
   return (
     <>
       <h1>Twitch Streams</h1>
