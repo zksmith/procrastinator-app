@@ -46,6 +46,15 @@
   }
 }
 
+.github-link {
+  position: fixed;
+  bottom: 3%;
+  left: 11%;
+}
+.github-link svg {
+  fill: #000;
+}
+
 /* Darkmode styles */
 .darkmode .sidebar {
   background-color: #1c1c1c;
@@ -55,5 +64,9 @@
 }
 
 .darkmode .sidebar svg {
+  fill: #fff;
+}
+
+.darkmode .github-link svg {
   fill: #fff;
 }
