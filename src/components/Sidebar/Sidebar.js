@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 import './Sidebar.css';
 
 const Sidebar = ({ selected, changeSelected }) => {
-  const { mobileSidebarShown } = useContext(GlobalContext);
+  const { mobileSidebarShown, toggleSidebar } = useContext(GlobalContext);
 
   const linkTexts = [
     'All Posts',
@@ -31,7 +31,10 @@ const Sidebar = ({ selected, changeSelected }) => {
               <Link
                 to='/'
                 key={name}
-                onClick={() => changeSelected(name)}
+                onClick={() => {
+                  toggleSidebar();
+                  changeSelected(name);
+                }}
                 className={`link ${name === selected ? 'selected' : ''}`}
               >
                 {name === 'Twitch Streams' && <li className='divider'></li>}
