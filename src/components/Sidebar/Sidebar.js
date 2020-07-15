@@ -13,7 +13,7 @@ const Sidebar = ({ selected, changeSelected }) => {
     'Reddit',
     'Hacker News',
     'Github Trending',
-    'New York Times',
+    'Product Hunt',
     'Twitch Streams',
   ];
 
@@ -45,7 +45,7 @@ const Sidebar = ({ selected, changeSelected }) => {
         </ul>
       </div>
       <a
-        class='github-link'
+        className='github-link'
         href='https://github.com/zksmith/procrastinator-app'
       >
         <svg

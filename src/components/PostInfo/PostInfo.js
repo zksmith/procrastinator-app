@@ -11,7 +11,6 @@ const PostInfo = ({ item, bookmarks = false }) => {
     title,
     stars,
     forks,
-    section,
     comments,
     commentsUrl,
     upvotes,
@@ -63,30 +62,6 @@ const PostInfo = ({ item, bookmarks = false }) => {
           <span>by {author}</span>
           <span>{stars} stars</span>
           <span>{forks} forks</span>
-          <button
-            className='bookmark-btn link'
-            onClick={() => addBookmark({ title, url, source })}
-          >
-            Bookmark
-          </button>
-        </div>
-      </li>
-    );
-  } else if (source === 'New York Times') {
-    return (
-      <li className='infoLi'>
-        <a
-          href={url}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='post-title'
-        >
-          <p>{title}</p>
-        </a>
-        <div className='post-info'>
-          <span>{source}</span>
-          <span>{author}</span>
-          <span>{section.toUpperCase()}</span>
           <button
             className='bookmark-btn link'
             onClick={() => addBookmark({ title, url, source })}
