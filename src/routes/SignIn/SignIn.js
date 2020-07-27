@@ -4,14 +4,18 @@ import { Redirect } from 'react-router-dom';
 
 const SignIn = () => {
   const { signIn, userId } = useContext(GlobalContext);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-  const [signInEmail, setSignInEmail] = useState('');
-  const [signInPassword, setSignInPassword] = useState('');
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmitSignIn = (e) => {
     e.preventDefault();
 
-    signIn(signInEmail, signInPassword);
+    signIn(formData.email, formData.password);
   };
 
   if (userId) {
@@ -25,14 +29,16 @@ const SignIn = () => {
           required
           type='email'
           placeholder='Email'
+          name='email'
           autoFocus
-          onChange={(e) => setSignInEmail(e.target.value)}
+          onChange={(e) => onChange(e)}
         />
         <input
           required
           type='password'
           placeholder='Password'
-          onChange={(e) => setSignInPassword(e.target.value)}
+          name='password'
+          onChange={(e) => onChange(e)}
         />
         <input type='submit' value='Sign In' />
         <a href='/register' className='underlink'>
